@@ -46,12 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminDodavanjeKorisnika.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminDodavanjeKorisnika.Designer.cs">
+      <DependentUpon>AdminDodavanjeKorisnika.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminMDIParent.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AdminMDIParent.Designer.cs">
       <DependentUpon>AdminMDIParent.cs</DependentUpon>
     </Compile>
+    <Compile Include="HesovanjeSifre.cs" />
     <Compile Include="LoginForma.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +91,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdminDodavanjeKorisnika.resx">
+      <DependentUpon>AdminDodavanjeKorisnika.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminMDIParent.resx">
       <DependentUpon>AdminMDIParent.cs</DependentUpon>
     </EmbeddedResource>

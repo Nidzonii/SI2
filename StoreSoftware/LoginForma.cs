@@ -16,7 +16,7 @@ namespace StoreSoftware
         public login()
         {
             InitializeComponent();
-            txtboxPassword.PasswordChar = '*';
+            //txtboxPassword.PasswordChar = '*';
         }
 
         private void login_Load(object sender, EventArgs e)
@@ -43,6 +43,7 @@ namespace StoreSoftware
         {
             txtboxUsername.Focus();
             SqlConnection conn = new SqlConnection("Data Source=LAPTOP-QQ1TU8ST;Initial Catalog=ProdavnicaRacunarskeOpreme;Integrated Security=True");
+            txtboxPassword.Text = HesovanjeSifre.enkripcija(txtboxPassword.Text);
             string sqlQuery = "SELECT korisnicko_ime,sifra FROM Korisnik WHERE korisnicko_ime='" + txtboxUsername.Text + "' AND sifra='" + txtboxPassword.Text + "'";
             string sqlQueryRole;
             string role;
@@ -66,7 +67,7 @@ namespace StoreSoftware
                             a.Show();
                             break;
                         default:
-                            MessageBox.Show("Neispravna šifra i/ili korisničko ime");
+                            MessageBox.Show("Za sad samo admin može da se uloguje!");
                             break;
                     }
                 }
@@ -77,7 +78,7 @@ namespace StoreSoftware
             }
             else
             {
-                MessageBox.Show("Ne postoji korisnik sa datim korisnickim imenom i/ili sifrom!");
+                MessageBox.Show("Neispravno uneto korisnicko ime i/ili sifra!");
                 Clean();
             }
         }

@@ -40,7 +40,6 @@ namespace StoreSoftware
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            //this.textBox1 = new Class1("Unesite traženi proizvod ");
 
         }
 
