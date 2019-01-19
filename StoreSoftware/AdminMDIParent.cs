@@ -113,6 +113,7 @@ namespace StoreSoftware
             af.MdiParent = this;
             af.Dock = DockStyle.Fill;
             af.Show();
+
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
