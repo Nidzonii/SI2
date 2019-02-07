@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -46,6 +47,31 @@ namespace StoreSoftware
         private void izmenaProizvodaToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonUkloni_Click(object sender, EventArgs e)
+        {
+            SqlConnection konekcija = KonekcioniString.getKonekcija();
+            try
+            {
+                String uklanjanje = "DELETE FROM Proizvodi WHERE id_proizvoda='" + textBoxBarcode.Text + "'";
+                SqlCommand komanda = new SqlCommand(uklanjanje, konekcija);
+
+                konekcija.Open();
+                int provera = komanda.ExecuteNonQuery();
+                if (provera > 0)
+                {
+                    MessageBox.Show("Uspesno uklonjen proizvod!");
+                }
+                else
+                {
+                    MessageBox.Show("Proizvod nije uklonjen!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

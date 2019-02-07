@@ -36,8 +36,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.textBoxBarcode = new System.Windows.Forms.TextBox();
+            this.buttonUkloni = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -143,31 +143,32 @@
             this.textBox2.Size = new System.Drawing.Size(137, 20);
             this.textBox2.TabIndex = 11;
             // 
-            // textBox4
+            // textBoxBarcode
             // 
-            this.textBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.textBox4.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.textBox4.Location = new System.Drawing.Point(699, 132);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(137, 20);
-            this.textBox4.TabIndex = 12;
+            this.textBoxBarcode.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBoxBarcode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
+            this.textBoxBarcode.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxBarcode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
+            this.textBoxBarcode.Location = new System.Drawing.Point(699, 132);
+            this.textBoxBarcode.Name = "textBoxBarcode";
+            this.textBoxBarcode.Size = new System.Drawing.Size(137, 20);
+            this.textBoxBarcode.TabIndex = 12;
             // 
-            // button4
+            // buttonUkloni
             // 
-            this.button4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.button4.Location = new System.Drawing.Point(699, 174);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(137, 36);
-            this.button4.TabIndex = 13;
-            this.button4.Text = "Ukloni";
-            this.button4.UseVisualStyleBackColor = false;
+            this.buttonUkloni.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.buttonUkloni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
+            this.buttonUkloni.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
+            this.buttonUkloni.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonUkloni.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUkloni.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
+            this.buttonUkloni.Location = new System.Drawing.Point(699, 174);
+            this.buttonUkloni.Name = "buttonUkloni";
+            this.buttonUkloni.Size = new System.Drawing.Size(137, 36);
+            this.buttonUkloni.TabIndex = 13;
+            this.buttonUkloni.Text = "Ukloni";
+            this.buttonUkloni.UseVisualStyleBackColor = false;
+            this.buttonUkloni.Click += new System.EventHandler(this.buttonUkloni_Click);
             // 
             // AdminForma
             // 
@@ -176,8 +177,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(925, 505);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.buttonUkloni);
+            this.Controls.Add(this.textBoxBarcode);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.button3);
@@ -207,7 +208,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox textBoxBarcode;
+        private System.Windows.Forms.Button buttonUkloni;
     }
 }

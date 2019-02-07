@@ -121,5 +121,21 @@ namespace StoreSoftware
             AdminDodavanjeKorisnika adk = new AdminDodavanjeKorisnika();
             adk.Show();
         }
+
+        private void dodavanjeNovihProizvodaToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            DodavanjeProizvoda dp = new DodavanjeProizvoda();
+            dp.MdiParent = this;
+            dp.Dock = DockStyle.Fill;
+            dp.Show();
+        }
+
+        private void izmenaProizvodaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PromenaAtributa a = new PromenaAtributa();
+            a.MdiParent = this;
+            a.Dock = DockStyle.Fill;
+            a.Show();
+        }
     }
 }

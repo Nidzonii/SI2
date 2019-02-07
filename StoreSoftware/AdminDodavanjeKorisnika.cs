@@ -21,8 +21,7 @@ namespace StoreSoftware
         private void btnRegistracija_Click(object sender, EventArgs e)
         {
             string[] uloge = { "administrator", "vlasnik", "radnik", "komercijalista" };
-            SqlConnection konekcija = new SqlConnection("Data Source=LAPTOP-QQ1TU8ST;Initial Catalog=ProdavnicaRacunarskeOpreme;Integrated Security=True");
-
+            SqlConnection konekcija = KonekcioniString.getKonekcija();
             if (txtboxKorisnickoIme.Text.Length < 5 || txtboxSifra.Text.Length < 5)
             {
                 MessageBox.Show("Korisničko ime i šifra moraju biti barem 5 karaktera dugački!");
@@ -75,8 +74,7 @@ namespace StoreSoftware
 
         private void btnBrisanje_Click(object sender, EventArgs e)
         {
-            SqlConnection konekcija = new SqlConnection("Data Source=LAPTOP-QQ1TU8ST;Initial Catalog=ProdavnicaRacunarskeOpreme;Integrated Security=True");
-
+            SqlConnection konekcija = KonekcioniString.getKonekcija();
             try
             {
                 string sql = "DELETE FROM Korisnik WHERE korisnicko_ime='" + txtboxKorisnickoIme.Text + "'";
@@ -113,8 +111,7 @@ namespace StoreSoftware
 
         private void btnPronadji_Click(object sender, EventArgs e)
         {
-            SqlConnection konekcija = new SqlConnection("Data Source=LAPTOP-QQ1TU8ST;Initial Catalog=ProdavnicaRacunarskeOpreme;Integrated Security=True");
-
+            SqlConnection konekcija = KonekcioniString.getKonekcija();
             try
             {
                 string sql1 = "SELECT sifra, ime_uloge FROM Korisnik INNER JOIN Uloga ON Uloga.id_uloge = Korisnik.id_uloge WHERE korisnicko_ime='" + txtboxKorisnickoIme.Text + "'";

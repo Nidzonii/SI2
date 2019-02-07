@@ -42,12 +42,12 @@ namespace StoreSoftware
         private void button1_Click(object sender, EventArgs e)
         {
             txtboxUsername.Focus();
-            SqlConnection conn = new SqlConnection("Data Source=LAPTOP-QQ1TU8ST;Initial Catalog=ProdavnicaRacunarskeOpreme;Integrated Security=True");
+            SqlConnection conn = KonekcioniString.getKonekcija();
             txtboxPassword.Text = HesovanjeSifre.enkripcija(txtboxPassword.Text);
             string sqlQuery = "SELECT korisnicko_ime,sifra FROM Korisnik WHERE korisnicko_ime='" + txtboxUsername.Text + "' AND sifra='" + txtboxPassword.Text + "'";
             string sqlQueryRole;
             string role;
-            SqlDataAdapter sda = new SqlDataAdapter(sqlQuery, conn); ;
+            SqlDataAdapter sda = new SqlDataAdapter(sqlQuery, conn);
             DataTable dt = new DataTable();
             sda.Fill(dt);
 
@@ -66,8 +66,18 @@ namespace StoreSoftware
                             AdminMDIParent a = new AdminMDIParent();
                             a.Show();
                             break;
+                        case "komercijalista":
+                            this.Hide();
+                            KomercijalistaMDIParent k = new KomercijalistaMDIParent();
+                            k.Show();
+                            break;
+                        case "radnik":
+                            this.Hide();
+                            ProdajaForma p = new ProdajaForma();
+                            p.Show();
+                            break;
                         default:
-                            MessageBox.Show("Za sad samo admin može da se uloguje!");
+                            MessageBox.Show("Za sad samo admin i komercijalista mogu da se uloguju!");
                             break;
                     }
                 }

@@ -66,6 +66,7 @@
             this.txtboxUsername.Name = "txtboxUsername";
             this.txtboxUsername.Size = new System.Drawing.Size(287, 22);
             this.txtboxUsername.TabIndex = 2;
+            this.txtboxUsername.Text = "mrkce";
             // 
             // txtboxPassword
             // 
@@ -79,6 +80,7 @@
             this.txtboxPassword.PasswordChar = '*';
             this.txtboxPassword.Size = new System.Drawing.Size(287, 22);
             this.txtboxPassword.TabIndex = 3;
+            this.txtboxPassword.Text = "mrkce";
             this.txtboxPassword.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // btnLogin

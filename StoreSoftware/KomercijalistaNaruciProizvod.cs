@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace StoreSoftware
 {
-    public partial class narucivanjeNovihProizvoda : Form
+    public partial class KomercijalistaNaruciProizvod : Form
     {
-        public narucivanjeNovihProizvoda()
+        public KomercijalistaNaruciProizvod()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
