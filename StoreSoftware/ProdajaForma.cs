@@ -159,35 +159,66 @@ namespace StoreSoftware
         #endregion
 
         #region Search
-        public DataTable Search(string ime, string kategorija, string proizvodjac, string opis)
+        public DataTable Search(string ime, string kategorija, string proizvodjac, string opis, bool imaNaStanju)
         {
             //Static method to connect DB
             SqlConnection con = KonekcioniString.getKonekcija(); 
             //to hold the data from database
             DataTable dt = new DataTable();
-            try
+
+            if (!imaNaStanju)
             {
-                //sql query to get data
-                String sql = "Select * From Proizvodi WHERE ime like '%" + ime + "%' AND kategorija like '%" + kategorija + "%' AND proizvodjac like '%" + proizvodjac + "%' AND opis like '%" + opis + "%' ";
-                //for executing command
-                SqlCommand cmd = new SqlCommand(sql, con);
-                //getting data from db
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                //open connection
-                con.Open();
-                //fill data in our datatable
-                adapter.Fill(dt);
+                try
+                {
+                    //sql query to get data
+                    String sql = "Select * From Proizvodi WHERE ime like '%" + ime + "%' AND kategorija like '%" + kategorija + "%' AND proizvodjac like '%" + proizvodjac + "%' AND opis like '%" + opis + "%' ";
+                    //for executing command
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    //getting data from db
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    //open connection
+                    con.Open();
+                    //fill data in our datatable
+                    adapter.Fill(dt);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+                //return the value in datatablr
+                return dt;
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                try
+                {
+                    //sql query to get data
+                    String sql = "Select * From Proizvodi WHERE ime like '%" + ime + "%' AND kategorija like '%" + kategorija + "%' AND proizvodjac like '%" + proizvodjac + "%' AND opis like '%" + opis + "%' AND broj_na_stanju = 0 ";
+                    //for executing command
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    //getting data from db
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    //open connection
+                    con.Open();
+                    //fill data in our datatable
+                    adapter.Fill(dt);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+                //return the value in datatablr
+                return dt;
             }
-            finally
-            {
-                con.Close();
-            }
-            //return the value in datatablr
-            return dt;
+           
         }
 
         #endregion
@@ -220,7 +251,6 @@ namespace StoreSoftware
             {
                 con.Close();
             }
-             ;
         }
         #endregion
 
@@ -241,9 +271,10 @@ namespace StoreSoftware
             string opis = txtOpis.Text;
             string proizvodjac = txtProizvodjac.Text;
             string kategorija = txtKategorija.Text;
-            if (ime != null || opis != null || proizvodjac != null || kategorija != null)
+
+            if (ime != null || opis != null || proizvodjac != null || kategorija != null || checkBox1.Checked)
             {
-                DataTable dt = Search(ime, kategorija, proizvodjac, opis);
+                DataTable dt = Search(ime, kategorija, proizvodjac, opis, checkBox1.Checked);
                 dgv1.DataSource = dt;
             }
             else
@@ -399,6 +430,53 @@ namespace StoreSoftware
             //dgvKorpa.Rows[brojac].Cells[9].Value = dgv1.Rows[rowIndex].Cells[9].Value.ToString();
         }
 
+        private void dgv1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtIme_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNarucivanje_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Da li zelite da narucite?", "Potvrdi", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                SqlConnection con = KonekcioniString.getKonekcija();
+                try
+                {
+                    String sql = "Insert into Narudzbine (id_proizvoda, narucena_kolicina, vreme_narudzbine, stanje_narudzbine) VALUES ( @id, @kolicina, @vreme_narudzbine, @stanje)";
+                    SqlCommand cmd = new SqlCommand(sql, con);
+
+                    //cmd.Parameters.AddWithValue("@ime", "racun");
+                    cmd.Parameters.AddWithValue("@vreme_narudzbine", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@kolicina", numericUpDown1.Value);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@stanje", "radnik_narucio");
+                    con.Open();
+
+                    int rows = cmd.ExecuteNonQuery();
+                    //if the query is executed then the value of rows will be greater then  0 else it will be less then 0 
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
         private void addRow(DataTable dt, DataRow dr)
         {
             dr = dt.NewRow();
@@ -431,27 +509,36 @@ namespace StoreSoftware
 
         private void btnPotvrda_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Da li zelite da zavrsite kupovinu?", "Potvrdi", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (dtKorpa.Rows.Count > 0)
             {
-                try
+                if (MessageBox.Show("Da li zelite da zavrsite kupovinu?", "Potvrdi", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    try
+                    {
 
-                    DataTable dtbl = MakeDataTable();
-                    var time = DateTime.Now;
-                    String vreme = time.ToString("dd_MM_yyyy-hh_mm_ss");
-                    String path = String.Format("C:/Users/nikol/source/repos/SI2PROJEKAT/Racuni/{0}.pdf", vreme);
-                    ExportDataTableToPdf(dtbl, path, "Racun");
-                    upisiRacun(vreme);
-                    skiniSaStanja();
-                    MessageBox.Show("Uspesno ste zavrsili kupovinu!");
-                    dtKorpa.Rows.Clear();
-                    dgvKorpa.Refresh();
+                        DataTable dtbl = MakeDataTable();
+                        var time = DateTime.Now;
+                        String vreme = time.ToString("dd_MM_yyyy-hh_mm_ss");
+                        String path = String.Format("C:/Users/Sofi/Desktop/New folder/Racuni/{0}.pdf", vreme);
+                        ExportDataTableToPdf(dtbl, path, "Racun");
+                        upisiRacun(vreme);
+                        skiniSaStanja();
+                        MessageBox.Show("Uspesno ste zavrsili kupovinu!");
+                        dtKorpa.Rows.Clear();
+                        dgvKorpa.Refresh();
+                        DataTable dt = Select();
+                        dgv1.DataSource = dt;
 
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error Message");
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error Message");
-                }
+            }
+            else
+            {
+                MessageBox.Show("Korpa je prazna!");
             }
         }
 
@@ -459,6 +546,7 @@ namespace StoreSoftware
         {
             Zamena z = new Zamena();
             z.Show();
+            
         }
     }
 }

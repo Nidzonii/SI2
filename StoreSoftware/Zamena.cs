@@ -121,6 +121,8 @@ namespace StoreSoftware
             cmd.ExecuteNonQuery();
             con.Close();
             MessageBox.Show("Ponistili ste racun!!!");
+            DataTable dt = Select();
+            dgvZamena.DataSource = dt;
         }
     }
 }
