@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,17 +76,41 @@
     <Compile Include="KomercijalistaMDIParent.Designer.cs">
       <DependentUpon>KomercijalistaMDIParent.cs</DependentUpon>
     </Compile>
+    <Compile Include="KomercijalistaNaruceniProizvodi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KomercijalistaNaruceniProizvodi.Designer.cs">
+      <DependentUpon>KomercijalistaNaruceniProizvodi.cs</DependentUpon>
+    </Compile>
     <Compile Include="KomercijalistaNaruciProizvod.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="KomercijalistaNaruciProizvod.Designer.cs">
       <DependentUpon>KomercijalistaNaruciProizvod.cs</DependentUpon>
     </Compile>
+    <Compile Include="KomercijalistaNaruciProizvodMejl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KomercijalistaNaruciProizvodMejl.Designer.cs">
+      <DependentUpon>KomercijalistaNaruciProizvodMejl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KomercijalistaNaruciProizvodObrisiIzKorpe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KomercijalistaNaruciProizvodObrisiIzKorpe.Designer.cs">
+      <DependentUpon>KomercijalistaNaruciProizvodObrisiIzKorpe.cs</DependentUpon>
+    </Compile>
     <Compile Include="KomercijalistaPregledDobavljaca.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="KomercijalistaPregledDobavljaca.Designer.cs">
       <DependentUpon>KomercijalistaPregledDobavljaca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KomercijalistaPrikazFaktura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KomercijalistaPrikazFaktura.Designer.cs">
+      <DependentUpon>KomercijalistaPrikazFaktura.cs</DependentUpon>
     </Compile>
     <Compile Include="KomercijalistaProizvodiDobavljaca.cs">
       <SubType>Form</SubType>
@@ -162,8 +187,23 @@
     <EmbeddedResource Include="KomercijalistaMDIParent.resx">
       <DependentUpon>KomercijalistaMDIParent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="KomercijalistaNaruceniProizvodi.resx">
+      <DependentUpon>KomercijalistaNaruceniProizvodi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KomercijalistaNaruciProizvod.resx">
+      <DependentUpon>KomercijalistaNaruciProizvod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KomercijalistaNaruciProizvodMejl.resx">
+      <DependentUpon>KomercijalistaNaruciProizvodMejl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KomercijalistaNaruciProizvodObrisiIzKorpe.resx">
+      <DependentUpon>KomercijalistaNaruciProizvodObrisiIzKorpe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="KomercijalistaPregledDobavljaca.resx">
       <DependentUpon>KomercijalistaPregledDobavljaca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KomercijalistaPrikazFaktura.resx">
+      <DependentUpon>KomercijalistaPrikazFaktura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KomercijalistaProizvodiDobavljaca.resx">
       <DependentUpon>KomercijalistaProizvodiDobavljaca.cs</DependentUpon>
@@ -219,6 +259,25 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxAcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

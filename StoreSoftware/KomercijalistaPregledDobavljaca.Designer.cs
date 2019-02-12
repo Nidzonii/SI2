@@ -28,47 +28,60 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnPretrazi = new System.Windows.Forms.Button();
             this.txtDobavljac = new System.Windows.Forms.TextBox();
             this.dataGridDobavljac = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDobavljac)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnPretrazi
-            // 
-            this.btnPretrazi.Location = new System.Drawing.Point(238, 32);
-            this.btnPretrazi.Name = "btnPretrazi";
-            this.btnPretrazi.Size = new System.Drawing.Size(75, 23);
-            this.btnPretrazi.TabIndex = 0;
-            this.btnPretrazi.Text = "Pretraži";
-            this.btnPretrazi.UseVisualStyleBackColor = true;
-            this.btnPretrazi.Click += new System.EventHandler(this.btnPretrazi_Click);
-            // 
             // txtDobavljac
             // 
-            this.txtDobavljac.Location = new System.Drawing.Point(73, 34);
+            this.txtDobavljac.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDobavljac.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.txtDobavljac.Location = new System.Drawing.Point(236, 48);
             this.txtDobavljac.Name = "txtDobavljac";
-            this.txtDobavljac.Size = new System.Drawing.Size(147, 20);
+            this.txtDobavljac.Size = new System.Drawing.Size(191, 26);
             this.txtDobavljac.TabIndex = 1;
+            this.txtDobavljac.Text = "Unesite ključnu reč...";
+            this.txtDobavljac.TextChanged += new System.EventHandler(this.txtDobavljac_TextChanged);
+            this.txtDobavljac.Enter += new System.EventHandler(this.txtDobavljac_Enter);
+            this.txtDobavljac.Leave += new System.EventHandler(this.txtDobavljac_Leave);
             // 
             // dataGridDobavljac
             // 
+            this.dataGridDobavljac.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridDobavljac.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridDobavljac.Location = new System.Drawing.Point(73, 106);
             this.dataGridDobavljac.Name = "dataGridDobavljac";
-            this.dataGridDobavljac.Size = new System.Drawing.Size(554, 241);
+            this.dataGridDobavljac.Size = new System.Drawing.Size(652, 241);
             this.dataGridDobavljac.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
+            this.label1.Location = new System.Drawing.Point(70, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(160, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Pretražite dobavljače:";
             // 
             // KomercijalistaPregledDobavljaca
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridDobavljac);
             this.Controls.Add(this.txtDobavljac);
-            this.Controls.Add(this.btnPretrazi);
+            this.ForeColor = System.Drawing.Color.Black;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "KomercijalistaPregledDobavljaca";
-            this.Text = "KomercijalistaPregledDobavljaca";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.KomercijalistaPregledDobavljaca_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDobavljac)).EndInit();
             this.ResumeLayout(false);
@@ -77,9 +90,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnPretrazi;
         private System.Windows.Forms.TextBox txtDobavljac;
         private System.Windows.Forms.DataGridView dataGridDobavljac;
+        private System.Windows.Forms.Label label1;
     }
 }
