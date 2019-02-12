@@ -30,11 +30,11 @@ namespace StoreSoftware
             {
                 for (int i = 0; i < uloge.Length; i++)
                 {
-                    if (txtboxUloga.Text == uloge[i])
+                    if (comboBox1.Text == uloge[i])
                     {
                         try
                         {
-                            string sql1 = "SELECT id_uloge FROM Uloga WHERE ime_uloge='" + txtboxUloga.Text + "'";
+                            string sql1 = "SELECT id_uloge FROM Uloga WHERE ime_uloge='" + comboBox1.Text + "'";
                             SqlCommand komanda1 = new SqlCommand(sql1, konekcija);
                             konekcija.Open();
                             int pozicijaUloge = (int)komanda1.ExecuteScalar(); //RADI
@@ -48,10 +48,12 @@ namespace StoreSoftware
                             if(proveraUspesnosti > 0)
                             {
                                 MessageBox.Show("Uspešno registrovan korisnik!");
+                                PrazanTekst();
                             }
                             else
                             {
                                 MessageBox.Show("Došlo je do neke greške. Pokušajte ponovo.");
+                                PrazanTekst();
                             }
                             break;
                         } catch(Exception ex)
@@ -80,7 +82,7 @@ namespace StoreSoftware
                 string sql = "DELETE FROM Korisnik WHERE korisnicko_ime='" + txtboxKorisnickoIme.Text + "'";
                 SqlCommand komanda = new SqlCommand(sql, konekcija);
                 konekcija.Open();
-                if(txtboxUloga.Text != "vlasnik")
+                if(comboBox1.Text != "vlasnik")
                 {
                     int proveraUspesnosti = komanda.ExecuteNonQuery();
                     if (proveraUspesnosti > 0)
@@ -93,7 +95,7 @@ namespace StoreSoftware
                         MessageBox.Show("Ne postoji korisnik sa korisnickim imenom " + txtboxKorisnickoIme.Text);
                     }
                 }
-                else if(txtboxUloga.Text == "vlasnik")
+                else if(comboBox1.Text == "vlasnik")
                 {
                     MessageBox.Show("Nemoguće obrisati vlasnika softvera!");
                 }
@@ -122,7 +124,7 @@ namespace StoreSoftware
                 {
                     txtboxSifra.Text = (citac["sifra"].ToString());
                     txtboxSifra.Text = HesovanjeSifre.dekripcija(txtboxSifra.Text);
-                    txtboxUloga.Text = (citac["ime_uloge"].ToString());
+                    comboBox1.Text = (citac["ime_uloge"].ToString());
                 }
                 else
                 {
@@ -144,7 +146,37 @@ namespace StoreSoftware
         {
             txtboxKorisnickoIme.Text = "";
             txtboxSifra.Text = "";
-            txtboxUloga.Text = "";
+            comboBox1.Text = "";
+        }
+
+        private void txtboxKorisnickoIme_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtboxUloga_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtboxSifra_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
