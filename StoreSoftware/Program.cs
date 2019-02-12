@@ -16,7 +16,7 @@ namespace StoreSoftware
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AdminDodavanjeKorisnika());
+            Application.Run(new login());
         }
     }
 }
