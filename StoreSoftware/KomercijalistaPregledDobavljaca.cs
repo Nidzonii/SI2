@@ -31,5 +31,47 @@ namespace StoreSoftware
             DataTable dt = Komercijalista.PrikaziDobavljaca();
             dataGridDobavljac.DataSource = dt;
         }
+
+        private void txtDobavljac_Leave(object sender, EventArgs e)
+        {
+            if(txtDobavljac.Text == "" || txtDobavljac.Text == " ")
+            {
+                txtDobavljac.Text = "Unesite ključnu reč...";
+                txtDobavljac.ForeColor = Color.Gray;
+            }
+        }
+
+        private void txtDobavljac_Enter(object sender, EventArgs e)
+        {
+            if (txtDobavljac.Text == "Unesite ključnu reč...")
+            {
+                txtDobavljac.ForeColor = Color.Black;
+                txtDobavljac.Text = "";
+            }
+        }
+
+        private void txtDobavljac_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string upit1 = "SELECT * FROM Dobavljac WHERE ime LIKE '%" + txtDobavljac.Text + "%' OR mejl LIKE '%" + txtDobavljac.Text + "%' OR broj_telefona LIKE '%" + txtDobavljac.Text + "%'";
+                SqlDataAdapter sda = new SqlDataAdapter(upit1, konekcija);
+                if (txtDobavljac.Text == "Unesite ključnu reč...")
+                {
+                    DataTable dt = Komercijalista.IzlistajSveDobavljace();
+                    dataGridDobavljac.DataSource = dt;
+                }
+                else
+                {
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    dataGridDobavljac.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
     }
 }

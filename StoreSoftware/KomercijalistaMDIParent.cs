@@ -42,5 +42,44 @@ namespace StoreSoftware
             KomercijalistaProizvodiDobavljaca kpd = new KomercijalistaProizvodiDobavljaca();
             kpd.Show();
         }
+
+        private void naručiProizvodToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KomercijalistaNaruciProizvod knp = new KomercijalistaNaruciProizvod();
+            knp.MdiParent = this;
+            knp.Dock = DockStyle.Fill;
+            knp.Show();
+        }
+
+        private void naručeniProizvodiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KomercijalistaNaruceniProizvodi knp = new KomercijalistaNaruceniProizvodi();
+            knp.MdiParent = this;
+            knp.Dock = DockStyle.Fill;
+            knp.Show();
+        }
+
+        private void prikazFakturaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KomercijalistaPrikazFaktura kpf = new KomercijalistaPrikazFaktura();
+            kpf.MdiParent = this;
+            kpf.Dock = DockStyle.Fill;
+            kpf.Show();
+        }
+
+        private void odjaviSeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            login log = new login();
+            log.Show();
+        }
+
+        private void KomercijalistaMDIParent_Load(object sender, EventArgs e)
+        {
+            KomercijalistaNaruceniProizvodi knp = new KomercijalistaNaruceniProizvodi();
+            knp.MdiParent = this;
+            knp.Dock = DockStyle.Fill;
+            knp.Show();
+        }
     }
 }

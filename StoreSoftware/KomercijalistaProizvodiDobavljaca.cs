@@ -210,24 +210,169 @@ namespace StoreSoftware
             //DataTable dt = Komercijalista.NadjiOdredjeneVrednosti(txtPretrazi.Text);
             //dataGridProizvodi.DataSource = dt;
 
+            
+
             try
             {
                 string upit1 = "SELECT Dobavljac.ime AS dobavljač, ProizvodiDobavljaca.ime AS proizvod, ProizvodiDobavljaca.proizvodjac AS proizvođač, ProizvodiDobavljaca.kategorija, ImaOdProizvoda.cena FROM Dobavljac INNER JOIN ImaOdProizvoda ON Dobavljac.id_dobavljaca=ImaOdProizvoda.id_dobavljaca INNER JOIN ProizvodiDobavljaca ON ImaOdProizvoda.id_proizvoda_dobavljaca=ProizvodiDobavljaca.id_proizvoda_dobavljaca WHERE Dobavljac.ime LIKE '%" + txtPretrazi.Text + "%' OR ProizvodiDobavljaca.ime LIKE '%" + txtPretrazi.Text + "%' OR ProizvodiDobavljaca.proizvodjac LIKE '%" + txtPretrazi.Text + "%' OR  ProizvodiDobavljaca.kategorija LIKE '%" + txtPretrazi.Text + "%' OR ImaOdProizvoda.cena LIKE '%" + txtPretrazi.Text + "%'";
                 SqlDataAdapter sda = new SqlDataAdapter(upit1, konekcija);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                dataGridProizvodi.DataSource = dt;
+                if (txtPretrazi.Text == "Unesite ključnu reč...")
+                {
+                    DataTable dt = Komercijalista.IzlistajSveProizvodeDobavljaca();
+                    dataGridProizvodi.DataSource = dt;
+                }
+                else {
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    dataGridProizvodi.DataSource = dt;
+                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
+
+            
         }
 
         private void btnSviPodaci_Click(object sender, EventArgs e)
         {
             DataTable dt = Komercijalista.IzlistajSveProizvodeDobavljaca();
             dataGridProizvodi.DataSource = dt;
+        }
+
+        private void btnIzmeniCenu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                konekcija.Open();
+                string nadjiIdDobavljaca = "SELECT id_dobavljaca FROM Dobavljac WHERE ime='" + txtDobavljac.Text + "'";
+                SqlCommand komandaNadjiIdDobavljaca = new SqlCommand(nadjiIdDobavljaca, konekcija);
+                int idDobavljaca = Convert.ToInt32(komandaNadjiIdDobavljaca.ExecuteScalar());
+                MessageBox.Show(idDobavljaca.ToString());
+                if(idDobavljaca > 0)
+                {
+                    string nadjiIdProizvodaDobavljaca = "SELECT id_proizvoda_dobavljaca FROM ProizvodiDobavljaca WHERE ime='" + txtImeProizvoda.Text + "' AND proizvodjac='" + txtProizvodjac.Text + "' AND kategorija='" + txtKategorija.Text + "'";
+                    SqlCommand komandaNadjiIdProizvodaDobavljaca = new SqlCommand(nadjiIdProizvodaDobavljaca, konekcija);
+                    int idProizvodaDobavljaca = Convert.ToInt32(komandaNadjiIdProizvodaDobavljaca.ExecuteScalar());
+                    MessageBox.Show(idProizvodaDobavljaca.ToString());
+                    if (idProizvodaDobavljaca > 0)
+                    {
+                        string apdejtujCenu = "UPDATE ImaOdProizvoda SET cena='" + txtCena.Text + "' WHERE id_dobavljaca='" + idDobavljaca + "' AND id_proizvoda_dobavljaca='" + idProizvodaDobavljaca + "'";
+                        SqlCommand komandaApdejtujCenu = new SqlCommand(apdejtujCenu, konekcija);
+                        int proveraUspesnosti = komandaApdejtujCenu.ExecuteNonQuery();
+                        MessageBox.Show(proveraUspesnosti.ToString());
+                        if (proveraUspesnosti > 0)
+                        {
+                            MessageBox.Show("Uspesno promenjena cena");
+                            DataTable dt = Komercijalista.IzlistajSveProizvodeDobavljaca();
+                            dataGridProizvodi.DataSource = dt;
+                            //apdejtujCenuProizvodaUBazi(idProizvodaDobavljaca, txtCena.Text, txtProizvodjac.Text, txtKategorija.Text);
+                            string selektujSveProizvode = "SELECT cena FROM ImaOdProizvoda WHERE id_proizvoda_dobavljaca='" + idProizvodaDobavljaca + "'";
+                            SqlCommand komandaSelektujSveProizvode = new SqlCommand(selektujSveProizvode, konekcija);
+                            double ukupno = 0;
+                            int brojIteracija = 0;
+                            double cenaUProdaji = 0;
+                            using (SqlDataReader sdr = komandaSelektujSveProizvode.ExecuteReader())
+                            {
+                                while (sdr.Read())
+                                {
+                                    double cena = Convert.ToDouble(sdr["cena"].ToString());
+                                    brojIteracija++;
+                                    ukupno = ukupno + cena;
+                                }
+                            }
+                            cenaUProdaji = ukupno / brojIteracija;
+                            cenaUProdaji = cenaUProdaji + cenaUProdaji * 0.2;
+
+                            string pronadjiProizvodUBazi = "SELECT id_proizvoda FROM Proizvodi WHERE ime='" + txtImeProizvoda.Text + "' AND proizvodjac='" + txtProizvodjac.Text + "' AND kategorija='" + txtKategorija.Text + "'";
+                            SqlCommand komandaPronadjiProizvodUBazi = new SqlCommand(pronadjiProizvodUBazi, konekcija);
+                            int daLiPostoji = Convert.ToInt32(komandaPronadjiProizvodUBazi.ExecuteScalar());
+                            //MessageBox.Show(daLiPostoji.ToString());
+                            if (daLiPostoji > 0)
+                            {
+                                string postaviNovuCenu = "UPDATE Proizvodi SET cena='" + cenaUProdaji + "' WHERE id_proizvoda='" + daLiPostoji + "'";
+                                SqlCommand komandaPostaviNovuCenu = new SqlCommand(postaviNovuCenu, konekcija);
+                                int uspesnoIliNe = komandaPostaviNovuCenu.ExecuteNonQuery();
+                                if (uspesnoIliNe > 0)
+                                {
+                                    MessageBox.Show("Uspesno promenjena cena proizvoda u maloprodaji");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Doslo je do greske!");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Ne postoji proizvod u nasoj bazi!");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Doslo je do greske!");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ne postoji proizvod sa datim specifikacijama");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ne postoji dobavljac sa datim ID-em");
+                }
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+        }
+
+        private void apdejtujCenuProizvodaUBazi(int idProizvodaDobavljaca, string imeProizvoda, string proizvodjac, string kategorija)
+        {
+            string selektujSveProizvode = "SELECT cena FROM ImaOdProizvoda WHERE id_proizvoda_dobavljaca='" + idProizvodaDobavljaca + "'";
+            SqlCommand komandaSelektujSveProizvode = new SqlCommand(selektujSveProizvode, konekcija);
+            double ukupno = 0;
+            int brojIteracija = 0;
+            double cenaUProdaji = 0;
+            using(SqlDataReader sdr = komandaSelektujSveProizvode.ExecuteReader())
+            {
+                while (sdr.Read())
+                {
+                    double cena = Convert.ToDouble(sdr["cena"].ToString());
+                    brojIteracija++;
+                    ukupno = ukupno + cena;
+                }
+            }
+            cenaUProdaji = ukupno / brojIteracija ;
+            cenaUProdaji = cenaUProdaji + cenaUProdaji * 0.2;
+
+            string pronadjiProizvodUBazi = "SELECT id_proizvoda FROM Proizvodi WHERE ime='" + imeProizvoda + "' AND proizvodjac='" + proizvodjac + "' AND kategorija='" + kategorija + "'";
+            SqlCommand komandaPronadjiProizvodUBazi = new SqlCommand(pronadjiProizvodUBazi, konekcija);
+            int daLiPostoji = Convert.ToInt32(komandaPronadjiProizvodUBazi.ExecuteScalar());
+            MessageBox.Show(daLiPostoji.ToString());
+            if(daLiPostoji > 0)
+            {
+                string postaviNovuCenu = "UPDATE Proizvodi SET cena='" + cenaUProdaji + "' WHERE id_proizvoda='" + daLiPostoji + "'";
+                SqlCommand komandaPostaviNovuCenu = new SqlCommand(postaviNovuCenu, konekcija);
+                int uspesnoIliNe = komandaPostaviNovuCenu.ExecuteNonQuery();
+                if(uspesnoIliNe > 0)
+                {
+                    MessageBox.Show("Uspesno setovana cena");
+                }
+                else
+                {
+                    MessageBox.Show("Doslo je do greske!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ne postoji proizvod u nasoj bazi!");
+            }
         }
     }
 }

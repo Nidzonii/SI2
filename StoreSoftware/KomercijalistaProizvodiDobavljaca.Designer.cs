@@ -44,6 +44,7 @@
             this.txtPretrazi = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnSviPodaci = new System.Windows.Forms.Button();
+            this.btnIzmeniCenu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProizvodi)).BeginInit();
             this.SuspendLayout();
             // 
@@ -129,7 +130,7 @@
             // 
             // btnUbaci
             // 
-            this.btnUbaci.Location = new System.Drawing.Point(76, 342);
+            this.btnUbaci.Location = new System.Drawing.Point(65, 342);
             this.btnUbaci.Name = "btnUbaci";
             this.btnUbaci.Size = new System.Drawing.Size(75, 23);
             this.btnUbaci.TabIndex = 10;
@@ -187,11 +188,23 @@
             this.btnSviPodaci.UseVisualStyleBackColor = true;
             this.btnSviPodaci.Click += new System.EventHandler(this.btnSviPodaci_Click);
             // 
+            // btnIzmeniCenu
+            // 
+            this.btnIzmeniCenu.Location = new System.Drawing.Point(161, 342);
+            this.btnIzmeniCenu.Name = "btnIzmeniCenu";
+            this.btnIzmeniCenu.Size = new System.Drawing.Size(75, 23);
+            this.btnIzmeniCenu.TabIndex = 17;
+            this.btnIzmeniCenu.Text = "Izmeni cenu";
+            this.btnIzmeniCenu.UseVisualStyleBackColor = true;
+            this.btnIzmeniCenu.Click += new System.EventHandler(this.btnIzmeniCenu_Click);
+            // 
             // KomercijalistaProizvodiDobavljaca
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(974, 450);
+            this.Controls.Add(this.btnIzmeniCenu);
             this.Controls.Add(this.btnSviPodaci);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtPretrazi);
@@ -208,8 +221,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtDobavljac);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "KomercijalistaProizvodiDobavljaca";
-            this.Text = "KomercijalistaProizvodiDobavljaca";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.KomercijalistaProizvodiDobavljaca_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProizvodi)).EndInit();
             this.ResumeLayout(false);
@@ -235,5 +251,6 @@
         private System.Windows.Forms.TextBox txtPretrazi;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnSviPodaci;
+        private System.Windows.Forms.Button btnIzmeniCenu;
     }
 }
