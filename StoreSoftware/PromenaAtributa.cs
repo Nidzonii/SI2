@@ -28,9 +28,10 @@ namespace StoreSoftware
             String meniProizvod = "SELECT ime FROM Proizvodi";
             SqlCommand komanda = new SqlCommand(meniProizvod, konekcija);
             SqlDataReader citac;
+            konekcija.Open();
             try
             {
-                konekcija.Open();
+                
                 citac = komanda.ExecuteReader();
                 while (citac.Read())
                 {
@@ -45,6 +46,10 @@ namespace StoreSoftware
             {
                 MessageBox.Show(ex.Message);
             }
+            konekcija.Close();
+
+                
+
         }
 
         void PadajuciMeniKriterijum()
@@ -84,11 +89,13 @@ namespace StoreSoftware
                 if (provera > 0)
                 {
                     MessageBox.Show("Proizvod je uspesno izmenjen!");
+                    konekcija.Close();
                 }
                 else
                 {
                     MessageBox.Show("Proizvod nije izmenjen!");
                 }
+                
 
             }
             else
@@ -106,7 +113,7 @@ namespace StoreSoftware
                 {
                     MessageBox.Show("Proizvod nije izmenjen!");
                 }
-
+                konekcija.Close();
             }
 
 
@@ -132,6 +139,7 @@ namespace StoreSoftware
                     MessageBox.Show("Cena grupe proizvoda nije izmenjena !");
 
                 }
+                konekcija.Close();
             }
             catch (Exception ex)
             {
