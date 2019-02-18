@@ -43,15 +43,22 @@
             // 
             // dataGridKorpa
             // 
+            this.dataGridKorpa.AllowUserToAddRows = false;
+            this.dataGridKorpa.AllowUserToDeleteRows = false;
+            this.dataGridKorpa.BackgroundColor = System.Drawing.Color.White;
             this.dataGridKorpa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridKorpa.Location = new System.Drawing.Point(269, 55);
             this.dataGridKorpa.Name = "dataGridKorpa";
+            this.dataGridKorpa.ReadOnly = true;
             this.dataGridKorpa.Size = new System.Drawing.Size(392, 217);
             this.dataGridKorpa.TabIndex = 33;
             this.dataGridKorpa.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridKorpa_RowHeaderMouseClick);
             // 
             // txtCena
             // 
+            this.txtCena.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
+            this.txtCena.Font = new System.Drawing.Font("Arial", 8.25F);
+            this.txtCena.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.txtCena.Location = new System.Drawing.Point(135, 178);
             this.txtCena.Name = "txtCena";
             this.txtCena.ReadOnly = true;
@@ -61,6 +68,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.label5.Location = new System.Drawing.Point(59, 181);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
@@ -69,6 +77,9 @@
             // 
             // txtKategorija
             // 
+            this.txtKategorija.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
+            this.txtKategorija.Font = new System.Drawing.Font("Arial", 8.25F);
+            this.txtKategorija.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.txtKategorija.Location = new System.Drawing.Point(135, 138);
             this.txtKategorija.Name = "txtKategorija";
             this.txtKategorija.ReadOnly = true;
@@ -78,6 +89,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.label4.Location = new System.Drawing.Point(59, 141);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 13);
@@ -86,6 +98,9 @@
             // 
             // txtProizvodjac
             // 
+            this.txtProizvodjac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
+            this.txtProizvodjac.Font = new System.Drawing.Font("Arial", 8.25F);
+            this.txtProizvodjac.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.txtProizvodjac.Location = new System.Drawing.Point(135, 98);
             this.txtProizvodjac.Name = "txtProizvodjac";
             this.txtProizvodjac.ReadOnly = true;
@@ -95,6 +110,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.label3.Location = new System.Drawing.Point(59, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 13);
@@ -103,6 +119,9 @@
             // 
             // txtImeProizvoda
             // 
+            this.txtImeProizvoda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
+            this.txtImeProizvoda.Font = new System.Drawing.Font("Arial", 8.25F);
+            this.txtImeProizvoda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.txtImeProizvoda.Location = new System.Drawing.Point(135, 55);
             this.txtImeProizvoda.Name = "txtImeProizvoda";
             this.txtImeProizvoda.ReadOnly = true;
@@ -112,6 +131,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.label2.Location = new System.Drawing.Point(59, 58);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 13);
@@ -121,18 +141,22 @@
             // btnObrisi
             // 
             this.btnObrisi.AutoSize = true;
+            this.btnObrisi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnObrisi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.btnObrisi.Location = new System.Drawing.Point(103, 249);
             this.btnObrisi.Name = "btnObrisi";
-            this.btnObrisi.Size = new System.Drawing.Size(83, 23);
+            this.btnObrisi.Size = new System.Drawing.Size(85, 25);
             this.btnObrisi.TabIndex = 42;
-            this.btnObrisi.Text = "Obrisi iz korpe";
+            this.btnObrisi.Text = "Obriši iz korpe";
             this.btnObrisi.UseVisualStyleBackColor = true;
             this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
             // 
             // KomercijalistaNaruciProizvodObrisiIzKorpe
             // 
+            this.AcceptButton = this.btnObrisi;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(745, 335);
             this.Controls.Add(this.btnObrisi);
             this.Controls.Add(this.txtCena);

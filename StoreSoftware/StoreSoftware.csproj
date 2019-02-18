@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,11 +63,24 @@
     <Compile Include="AdminMDIParent.Designer.cs">
       <DependentUpon>AdminMDIParent.cs</DependentUpon>
     </Compile>
+    <Compile Include="AutomatizovanaRadnjaB.cs" />
+    <Compile Include="AutomatizovanaRadnjaStatistika.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutomatizovanaRadnjaStatistika.Designer.cs">
+      <DependentUpon>AutomatizovanaRadnjaStatistika.cs</DependentUpon>
+    </Compile>
     <Compile Include="DodavanjeProizvoda.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DodavanjeProizvoda.Designer.cs">
       <DependentUpon>DodavanjeProizvoda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormaSlika.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormaSlika.Designer.cs">
+      <DependentUpon>FormaSlika.cs</DependentUpon>
     </Compile>
     <Compile Include="HesovanjeSifre.cs" />
     <Compile Include="Komercijalista.cs" />
@@ -81,6 +95,12 @@
     </Compile>
     <Compile Include="KomercijalistaNaruceniProizvodi.Designer.cs">
       <DependentUpon>KomercijalistaNaruceniProizvodi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KomercijalistaNarucenoOdRadnika.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KomercijalistaNarucenoOdRadnika.Designer.cs">
+      <DependentUpon>KomercijalistaNarucenoOdRadnika.cs</DependentUpon>
     </Compile>
     <Compile Include="KomercijalistaNaruciProizvod.cs">
       <SubType>Form</SubType>
@@ -99,6 +119,12 @@
     </Compile>
     <Compile Include="KomercijalistaNaruciProizvodObrisiIzKorpe.Designer.cs">
       <DependentUpon>KomercijalistaNaruciProizvodObrisiIzKorpe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KomercijalistaNaruciProizvodRadnikMejl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KomercijalistaNaruciProizvodRadnikMejl.Designer.cs">
+      <DependentUpon>KomercijalistaNaruciProizvodRadnikMejl.cs</DependentUpon>
     </Compile>
     <Compile Include="KomercijalistaPregledDobavljaca.cs">
       <SubType>Form</SubType>
@@ -137,23 +163,11 @@
     <Compile Include="AdminForma.Designer.cs">
       <DependentUpon>AdminForma.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form3.cs">
+    <Compile Include="Pomoc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form3.Designer.cs">
-      <DependentUpon>Form3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form4.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form4.Designer.cs">
-      <DependentUpon>Form4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="narucivanjeNovihProizvoda.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="narucivanjeNovihProizvoda.Designer.cs">
-      <DependentUpon>narucivanjeNovihProizvoda.cs</DependentUpon>
+    <Compile Include="Pomoc.Designer.cs">
+      <DependentUpon>Pomoc.cs</DependentUpon>
     </Compile>
     <Compile Include="ProdajaForma.cs">
       <SubType>Form</SubType>
@@ -162,6 +176,12 @@
       <DependentUpon>ProdajaForma.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="ProizvodiKojiSeSlaboProdaju.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProizvodiKojiSeSlaboProdaju.Designer.cs">
+      <DependentUpon>ProizvodiKojiSeSlaboProdaju.cs</DependentUpon>
+    </Compile>
     <Compile Include="PromenaAtributa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +189,12 @@
       <DependentUpon>PromenaAtributa.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RadnikMDIParent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadnikMDIParent.Designer.cs">
+      <DependentUpon>RadnikMDIParent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Zamena.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,14 +207,23 @@
     <EmbeddedResource Include="AdminMDIParent.resx">
       <DependentUpon>AdminMDIParent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AutomatizovanaRadnjaStatistika.resx">
+      <DependentUpon>AutomatizovanaRadnjaStatistika.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DodavanjeProizvoda.resx">
       <DependentUpon>DodavanjeProizvoda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormaSlika.resx">
+      <DependentUpon>FormaSlika.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KomercijalistaMDIParent.resx">
       <DependentUpon>KomercijalistaMDIParent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KomercijalistaNaruceniProizvodi.resx">
       <DependentUpon>KomercijalistaNaruceniProizvodi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KomercijalistaNarucenoOdRadnika.resx">
+      <DependentUpon>KomercijalistaNarucenoOdRadnika.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KomercijalistaNaruciProizvod.resx">
       <DependentUpon>KomercijalistaNaruciProizvod.cs</DependentUpon>
@@ -198,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KomercijalistaNaruciProizvodObrisiIzKorpe.resx">
       <DependentUpon>KomercijalistaNaruciProizvodObrisiIzKorpe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KomercijalistaNaruciProizvodRadnikMejl.resx">
+      <DependentUpon>KomercijalistaNaruciProizvodRadnikMejl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KomercijalistaPregledDobavljaca.resx">
       <DependentUpon>KomercijalistaPregledDobavljaca.cs</DependentUpon>
@@ -217,17 +255,14 @@
     <EmbeddedResource Include="AdminForma.resx">
       <DependentUpon>AdminForma.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form4.resx">
-      <DependentUpon>Form4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="narucivanjeNovihProizvoda.resx">
-      <DependentUpon>narucivanjeNovihProizvoda.cs</DependentUpon>
+    <EmbeddedResource Include="Pomoc.resx">
+      <DependentUpon>Pomoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProdajaForma.resx">
       <DependentUpon>ProdajaForma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProizvodiKojiSeSlaboProdaju.resx">
+      <DependentUpon>ProizvodiKojiSeSlaboProdaju.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PromenaAtributa.resx">
       <DependentUpon>PromenaAtributa.cs</DependentUpon>
@@ -241,6 +276,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RadnikMDIParent.resx">
+      <DependentUpon>RadnikMDIParent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Zamena.resx">
       <DependentUpon>Zamena.cs</DependentUpon>
     </EmbeddedResource>

@@ -22,6 +22,7 @@ namespace StoreSoftware
         DataTable dtKorpa = new DataTable();
         DataRow row;
         double ukupnaCena = 0.0;
+        SqlConnection con = KonekcioniString.getKonekcija();
 
 
         int izabranRed;
@@ -129,30 +130,18 @@ namespace StoreSoftware
         public DataTable Select()
         {
             //Static method to connect DB
-            SqlConnection con = KonekcioniString.getKonekcija();
             //to hold the data from database
             DataTable dt = new DataTable();
-            try
-            {
-                //sql query to get data
-                String sql = "Select * From Proizvodi";
-                //for executing command
-                SqlCommand cmd = new SqlCommand(sql, con);
-                //getting data from db
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                //open connection
-                con.Open();
-                //fill data in our datatable
-                adapter.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                con.Close();
-            }
+            //sql query to get data
+            String sql = "Select * From Proizvodi";
+            //for executing command
+            SqlCommand cmd = new SqlCommand(sql, con);
+            //getting data from db
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            //open connection
+            //con.Open();
+            //fill data in our datatable
+            adapter.Fill(dt);
             //return the value in datatablr
             return dt;
         }
@@ -162,7 +151,6 @@ namespace StoreSoftware
         public DataTable Search(string ime, string kategorija, string proizvodjac, string opis, bool imaNaStanju)
         {
             //Static method to connect DB
-            SqlConnection con = KonekcioniString.getKonekcija(); 
             //to hold the data from database
             DataTable dt = new DataTable();
 
@@ -226,7 +214,6 @@ namespace StoreSoftware
         #region Insert Data in Database
         public void upisiRacun(string vreme)
         {
-            SqlConnection con = KonekcioniString.getKonekcija();
 
             try
             {
@@ -257,11 +244,6 @@ namespace StoreSoftware
         public ProdajaForma()
         {
             InitializeComponent();
-        }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnPretraga_Click(object sender, EventArgs e)
@@ -297,7 +279,7 @@ namespace StoreSoftware
             {
                 if (System.Convert.ToInt32(dgv1.SelectedCells[0].Value) == System.Convert.ToInt32(row2.Cells["id"].Value))
                 {
-                    MessageBox.Show("Artikal je vec dodat u korpu!");
+                    MessageBox.Show("Artikal je već dodat u korpu!");
                     return 1;
                 }
                 if (numericUpDown1.Value > System.Convert.ToInt32(dgv1.SelectedCells[7].Value))
@@ -328,14 +310,19 @@ namespace StoreSoftware
 
             foreach (DataGridViewRow row2 in dgvKorpa.Rows)
             {
-                SqlConnection con = KonekcioniString.getKonekcija();
                 string odbitak = System.Convert.ToString(row2.Cells["kolicina"].Value);
                 string id = System.Convert.ToString(row2.Cells["ime"].Value);
+                string proizvodjac = System.Convert.ToString(row2.Cells["proizvodjac"].Value);
+                string kategorija = System.Convert.ToString(row2.Cells["kategorija"].Value);
 
-                String sql = "Update Proizvodi SET broj_na_stanju = broj_na_stanju - @odbitak WHERE ime = @ime";
+
+                String sql = "Update Proizvodi SET broj_na_stanju = broj_na_stanju - @odbitak, vreme_poslednje_prodaje = @vreme_prodaje, br_prodatih_proizvoda = br_prodatih_proizvoda + @odbitak WHERE ime = @ime AND proizvodjac = @proizvodjac AND kategorija = @kategorija";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@odbitak", odbitak);
-                cmd.Parameters.AddWithValue("@ime", ime);
+                cmd.Parameters.AddWithValue("@vreme_prodaje", DateTime.Now);
+                cmd.Parameters.AddWithValue("@ime", id);
+                cmd.Parameters.AddWithValue("@proizvodjac", proizvodjac);
+                cmd.Parameters.AddWithValue("@kategorija", kategorija);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -426,7 +413,7 @@ namespace StoreSoftware
             proizvodjac = dgv1.Rows[rowIndex].Cells[5].Value.ToString();
             kategorija = dgv1.Rows[rowIndex].Cells[6].Value.ToString();
             duzina_gar_roka = System.Convert.ToInt32(dgv1.Rows[rowIndex].Cells[7].Value.ToString());
-            link = dgv1.Rows[rowIndex].Cells[8].Value.ToString();
+            link = dgv1.Rows[rowIndex].Cells[9].Value.ToString();
             //dgvKorpa.Rows[brojac].Cells[9].Value = dgv1.Rows[rowIndex].Cells[9].Value.ToString();
         }
 
@@ -447,23 +434,20 @@ namespace StoreSoftware
 
         private void btnNarucivanje_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Da li zelite da narucite?", "Potvrdi", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Da li želite da naručite?", "Potvrdi", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                SqlConnection con = KonekcioniString.getKonekcija();
                 try
                 {
                     String sql = "Insert into Narudzbine (id_proizvoda, narucena_kolicina, vreme_narudzbine, stanje_narudzbine) VALUES ( @id, @kolicina, @vreme_narudzbine, @stanje)";
                     SqlCommand cmd = new SqlCommand(sql, con);
 
-                    //cmd.Parameters.AddWithValue("@ime", "racun");
                     cmd.Parameters.AddWithValue("@vreme_narudzbine", DateTime.Now);
                     cmd.Parameters.AddWithValue("@kolicina", numericUpDown1.Value);
                     cmd.Parameters.AddWithValue("@id", id);
-                    cmd.Parameters.AddWithValue("@stanje", "radnik_narucio");
+                    cmd.Parameters.AddWithValue("@stanje", "neobradjeno");
                     con.Open();
 
                     int rows = cmd.ExecuteNonQuery();
-                    //if the query is executed then the value of rows will be greater then  0 else it will be less then 0 
 
                 }
                 catch (Exception ex)
@@ -475,6 +459,17 @@ namespace StoreSoftware
                     con.Close();
                 }
             }
+        }
+
+        private void btnSlika_Click(object sender, EventArgs e)
+        {
+            FormaSlika fs = new FormaSlika(id);
+            fs.Show();
+        }
+
+        private void btnInternet_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(link);
         }
 
         private void addRow(DataTable dt, DataRow dr)
@@ -511,7 +506,7 @@ namespace StoreSoftware
         {
             if (dtKorpa.Rows.Count > 0)
             {
-                if (MessageBox.Show("Da li zelite da zavrsite kupovinu?", "Potvrdi", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Da li želite da završite kupovinu?", "Potvrdi", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     try
                     {
@@ -519,11 +514,12 @@ namespace StoreSoftware
                         DataTable dtbl = MakeDataTable();
                         var time = DateTime.Now;
                         String vreme = time.ToString("dd_MM_yyyy-hh_mm_ss");
-                        String path = String.Format("C:/Users/Sofi/Desktop/New folder/Racuni/{0}.pdf", vreme);
+                        string s = System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString()).ToString();
+                        String path = String.Format(@s + @"\Racuni\{0}.pdf", vreme);
                         ExportDataTableToPdf(dtbl, path, "Racun");
                         upisiRacun(vreme);
                         skiniSaStanja();
-                        MessageBox.Show("Uspesno ste zavrsili kupovinu!");
+                        MessageBox.Show("Uspešno ste završili kupovinu!");
                         dtKorpa.Rows.Clear();
                         dgvKorpa.Refresh();
                         DataTable dt = Select();

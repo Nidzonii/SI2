@@ -54,10 +54,12 @@
             // btnSviPodaci
             // 
             this.btnSviPodaci.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSviPodaci.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSviPodaci.Font = new System.Drawing.Font("Arial", 12.25F);
             this.btnSviPodaci.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.btnSviPodaci.Location = new System.Drawing.Point(813, 49);
+            this.btnSviPodaci.Location = new System.Drawing.Point(761, 56);
             this.btnSviPodaci.Name = "btnSviPodaci";
-            this.btnSviPodaci.Size = new System.Drawing.Size(75, 23);
+            this.btnSviPodaci.Size = new System.Drawing.Size(127, 26);
             this.btnSviPodaci.TabIndex = 30;
             this.btnSviPodaci.Text = "Svi podaci";
             this.btnSviPodaci.UseVisualStyleBackColor = true;
@@ -66,17 +68,18 @@
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.label6.Location = new System.Drawing.Point(350, 49);
+            this.label6.Location = new System.Drawing.Point(350, 65);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(150, 13);
+            this.label6.Size = new System.Drawing.Size(190, 16);
             this.label6.TabIndex = 29;
             this.label6.Text = "Pretraži po bilo kojoj vrednosti:";
             // 
             // txtPretrazi
             // 
             this.txtPretrazi.ForeColor = System.Drawing.Color.Gray;
-            this.txtPretrazi.Location = new System.Drawing.Point(506, 46);
+            this.txtPretrazi.Location = new System.Drawing.Point(546, 61);
             this.txtPretrazi.Name = "txtPretrazi";
             this.txtPretrazi.Size = new System.Drawing.Size(131, 20);
             this.txtPretrazi.TabIndex = 28;
@@ -87,12 +90,16 @@
             // 
             // dataGridProizvodi
             // 
+            this.dataGridProizvodi.AllowUserToAddRows = false;
+            this.dataGridProizvodi.AllowUserToDeleteRows = false;
             this.dataGridProizvodi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridProizvodi.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridProizvodi.BackgroundColor = System.Drawing.Color.White;
             this.dataGridProizvodi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridProizvodi.Location = new System.Drawing.Point(353, 88);
             this.dataGridProizvodi.Name = "dataGridProizvodi";
+            this.dataGridProizvodi.ReadOnly = true;
             this.dataGridProizvodi.Size = new System.Drawing.Size(535, 379);
             this.dataGridProizvodi.TabIndex = 27;
             this.dataGridProizvodi.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridProizvodi_CellContentClick);
@@ -100,21 +107,23 @@
             // 
             // txtDobavljac
             // 
+            this.txtDobavljac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.txtDobavljac.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDobavljac.Location = new System.Drawing.Point(177, 148);
+            this.txtDobavljac.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
+            this.txtDobavljac.Location = new System.Drawing.Point(149, 143);
             this.txtDobavljac.Name = "txtDobavljac";
             this.txtDobavljac.ReadOnly = true;
-            this.txtDobavljac.Size = new System.Drawing.Size(148, 31);
+            this.txtDobavljac.Size = new System.Drawing.Size(177, 31);
             this.txtDobavljac.TabIndex = 18;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Arial", 12.25F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.label1.Location = new System.Drawing.Point(21, 151);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 25);
+            this.label1.Size = new System.Drawing.Size(84, 19);
             this.label1.TabIndex = 17;
             this.label1.Text = "Dobavljač:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -123,6 +132,7 @@
             // 
             this.btnDodajUKorpu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDodajUKorpu.AutoSize = true;
+            this.btnDodajUKorpu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDodajUKorpu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDodajUKorpu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.btnDodajUKorpu.Location = new System.Drawing.Point(12, 489);
@@ -137,6 +147,7 @@
             // 
             this.btnUkloniIzKorpe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnUkloniIzKorpe.AutoSize = true;
+            this.btnUkloniIzKorpe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUkloniIzKorpe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUkloniIzKorpe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.btnUkloniIzKorpe.Location = new System.Drawing.Point(233, 489);
@@ -151,6 +162,7 @@
             // 
             this.btnPogledajNarudzbenicu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPogledajNarudzbenicu.AutoSize = true;
+            this.btnPogledajNarudzbenicu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPogledajNarudzbenicu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPogledajNarudzbenicu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.btnPogledajNarudzbenicu.Location = new System.Drawing.Point(382, 489);
@@ -165,11 +177,12 @@
             // 
             this.btnNaruciProizvod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNaruciProizvod.AutoSize = true;
+            this.btnNaruciProizvod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNaruciProizvod.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNaruciProizvod.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.btnNaruciProizvod.Location = new System.Drawing.Point(761, 493);
+            this.btnNaruciProizvod.Location = new System.Drawing.Point(759, 491);
             this.btnNaruciProizvod.Name = "btnNaruciProizvod";
-            this.btnNaruciProizvod.Size = new System.Drawing.Size(127, 30);
+            this.btnNaruciProizvod.Size = new System.Drawing.Size(129, 32);
             this.btnNaruciProizvod.TabIndex = 34;
             this.btnNaruciProizvod.Text = "Naruči proizvod";
             this.btnNaruciProizvod.UseVisualStyleBackColor = true;
@@ -178,19 +191,19 @@
             // txtKvantitet
             // 
             this.txtKvantitet.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKvantitet.Location = new System.Drawing.Point(177, 350);
+            this.txtKvantitet.Location = new System.Drawing.Point(149, 345);
             this.txtKvantitet.Name = "txtKvantitet";
-            this.txtKvantitet.Size = new System.Drawing.Size(148, 31);
+            this.txtKvantitet.Size = new System.Drawing.Size(177, 31);
             this.txtKvantitet.TabIndex = 36;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Arial", 12.25F);
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.label7.Location = new System.Drawing.Point(21, 353);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(102, 25);
+            this.label7.Size = new System.Drawing.Size(75, 19);
             this.label7.TabIndex = 35;
             this.label7.Text = "Kvantitet:";
             this.label7.Click += new System.EventHandler(this.label7_Click);
@@ -198,89 +211,99 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Arial", 12.25F);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.label2.Location = new System.Drawing.Point(21, 190);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(152, 25);
+            this.label2.Size = new System.Drawing.Size(116, 19);
             this.label2.TabIndex = 19;
             this.label2.Text = "Ime proizvoda:";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtImeProizvoda
             // 
+            this.txtImeProizvoda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.txtImeProizvoda.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtImeProizvoda.Location = new System.Drawing.Point(177, 187);
+            this.txtImeProizvoda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
+            this.txtImeProizvoda.Location = new System.Drawing.Point(149, 182);
             this.txtImeProizvoda.Name = "txtImeProizvoda";
             this.txtImeProizvoda.ReadOnly = true;
-            this.txtImeProizvoda.Size = new System.Drawing.Size(148, 31);
+            this.txtImeProizvoda.Size = new System.Drawing.Size(177, 31);
             this.txtImeProizvoda.TabIndex = 20;
+            this.txtImeProizvoda.TextChanged += new System.EventHandler(this.txtImeProizvoda_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Arial", 12.25F);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.label3.Location = new System.Drawing.Point(21, 233);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(125, 25);
+            this.label3.Size = new System.Drawing.Size(96, 19);
             this.label3.TabIndex = 21;
             this.label3.Text = "Proizvođač:";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // txtProizvodjac
             // 
+            this.txtProizvodjac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.txtProizvodjac.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProizvodjac.Location = new System.Drawing.Point(177, 230);
+            this.txtProizvodjac.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
+            this.txtProizvodjac.Location = new System.Drawing.Point(149, 225);
             this.txtProizvodjac.Name = "txtProizvodjac";
             this.txtProizvodjac.ReadOnly = true;
-            this.txtProizvodjac.Size = new System.Drawing.Size(148, 31);
+            this.txtProizvodjac.Size = new System.Drawing.Size(177, 31);
             this.txtProizvodjac.TabIndex = 22;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Arial", 12.25F);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.label4.Location = new System.Drawing.Point(21, 273);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(115, 25);
+            this.label4.Size = new System.Drawing.Size(87, 19);
             this.label4.TabIndex = 23;
             this.label4.Text = "Kategorija:";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // txtKategorija
             // 
+            this.txtKategorija.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.txtKategorija.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKategorija.Location = new System.Drawing.Point(177, 270);
+            this.txtKategorija.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
+            this.txtKategorija.Location = new System.Drawing.Point(149, 265);
             this.txtKategorija.Name = "txtKategorija";
             this.txtKategorija.ReadOnly = true;
-            this.txtKategorija.Size = new System.Drawing.Size(148, 31);
+            this.txtKategorija.Size = new System.Drawing.Size(177, 31);
             this.txtKategorija.TabIndex = 24;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Arial", 12.25F);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.label5.Location = new System.Drawing.Point(21, 313);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 25);
+            this.label5.Size = new System.Drawing.Size(53, 19);
             this.label5.TabIndex = 25;
             this.label5.Text = "Cena:";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // txtCena
             // 
+            this.txtCena.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.txtCena.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCena.Location = new System.Drawing.Point(177, 310);
+            this.txtCena.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
+            this.txtCena.Location = new System.Drawing.Point(149, 305);
             this.txtCena.Name = "txtCena";
             this.txtCena.ReadOnly = true;
-            this.txtCena.Size = new System.Drawing.Size(148, 31);
+            this.txtCena.Size = new System.Drawing.Size(177, 31);
             this.txtCena.TabIndex = 26;
             // 
             // KomercijalistaNaruciProizvod
             // 
+            this.AcceptButton = this.btnDodajUKorpu;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));

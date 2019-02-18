@@ -79,77 +79,80 @@ namespace StoreSoftware
         {
             SqlConnection konekcija = KonekcioniString.getKonekcija();
 
-            if (textBoxNovaVr.Text is String)
-            {
-                String promena = "UPDATE Proizvodi SET " + comboBox2.Text + " = '" + textBoxNovaVr.Text + "' WHERE ime = '" + comboBox1.Text + "'";
-                SqlCommand komanda = new SqlCommand(promena, konekcija);
-
-                konekcija.Open();
-                int provera = komanda.ExecuteNonQuery();
-                if (provera > 0)
-                {
-                    MessageBox.Show("Proizvod je uspesno izmenjen!");
-                    konekcija.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Proizvod nije izmenjen!");
-                }
-                
-
-            }
-            else
-            {
-                String promena = "UPDATE Proizvodi SET " + comboBox2.Text + " = " + textBoxNovaVr.Text + " WHERE ime = '" + comboBox1.Text + "'";
-                SqlCommand komanda = new SqlCommand(promena, konekcija);
-
-                konekcija.Open();
-                int provera = komanda.ExecuteNonQuery();
-                if (provera > 0)
-                {
-                    MessageBox.Show("Proizvod je uspesno izmenjen!");
-                }
-                else
-                {
-                    MessageBox.Show("Proizvod nije izmenjen!");
-                }
-                konekcija.Close();
-            }
-
-
-
-        }
-
-        private void promenaCene_Click(object sender, EventArgs e)
-        {
             try
             {
-                SqlConnection konekcija = KonekcioniString.getKonekcija();
-                String promena = "UPDATE Proizvodi SET cena = '" + textBoxCena.Text + "' WHERE " + comboBox3.Text + "='" + textBoxNaziv.Text + "'";
-                SqlCommand komanda = new SqlCommand(promena, konekcija);
-
                 konekcija.Open();
-                int provera = komanda.ExecuteNonQuery();
-                if (provera > 0)
+                if (textBoxNovaVr.Text is String)
                 {
-                    MessageBox.Show("Cena grupe proizvoda je uspesno izmenjen!");
+                    String promena = "UPDATE Proizvodi SET " + comboBox2.Text + " = '" + textBoxNovaVr.Text + "' WHERE ime = '" + comboBox1.Text + "'";
+                    SqlCommand komanda = new SqlCommand(promena, konekcija);
+
+                    int provera = komanda.ExecuteNonQuery();
+                    if (provera > 0)
+                    {
+                        MessageBox.Show("Proizvod je uspešno izmenjen!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Proizvod nije izmenjen!");
+                    }
+
+
                 }
                 else
                 {
-                    MessageBox.Show("Cena grupe proizvoda nije izmenjena !");
+                    String promena = "UPDATE Proizvodi SET " + comboBox2.Text + " = " + textBoxNovaVr.Text + " WHERE ime = '" + comboBox1.Text + "'";
+                    SqlCommand komanda = new SqlCommand(promena, konekcija);
 
+                    int provera = komanda.ExecuteNonQuery();
+                    if (provera > 0)
+                    {
+                        MessageBox.Show("Proizvod je uspešno izmenjen!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Proizvod nije izmenjen!");
+                    }
                 }
-                konekcija.Close();
-            }
-            catch (Exception ex)
+            }catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                konekcija.Close();
             }
         }
 
         private void promenaCene_Click_1(object sender, EventArgs e)
         {
+            SqlConnection konekcija = KonekcioniString.getKonekcija();
+            try
+            {
+                string izbor = comboBox3.Text;
+                string promena = "UPDATE Proizvodi SET cena='" + textBoxCena.Text + "' WHERE " + izbor + "='" + textBoxNaziv.Text + "'";
+                SqlCommand komanda = new SqlCommand(promena, konekcija);
 
+                konekcija.Open();
+                int provera = komanda.ExecuteNonQuery();
+                if (provera > 0)
+                {
+                    MessageBox.Show("Cena grupe proizvoda je uspešno izmenjena!");
+                }
+                else
+                {
+                    MessageBox.Show("Cena grupe proizvoda nije izmenjena!");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                konekcija.Close();
+            }
         }
     }
 }

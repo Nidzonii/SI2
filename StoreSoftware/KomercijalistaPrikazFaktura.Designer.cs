@@ -49,10 +49,11 @@
             // btnPrikaziFakturu
             // 
             this.btnPrikaziFakturu.AutoSize = true;
+            this.btnPrikaziFakturu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrikaziFakturu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.btnPrikaziFakturu.Location = new System.Drawing.Point(39, 53);
+            this.btnPrikaziFakturu.Location = new System.Drawing.Point(39, 58);
             this.btnPrikaziFakturu.Name = "btnPrikaziFakturu";
-            this.btnPrikaziFakturu.Size = new System.Drawing.Size(126, 23);
+            this.btnPrikaziFakturu.Size = new System.Drawing.Size(128, 25);
             this.btnPrikaziFakturu.TabIndex = 1;
             this.btnPrikaziFakturu.Text = "Prikaži fakturu iz arhive";
             this.btnPrikaziFakturu.UseVisualStyleBackColor = true;
@@ -60,6 +61,7 @@
             // 
             // KomercijalistaPrikazFaktura
             // 
+            this.AcceptButton = this.btnPrikaziFakturu;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));

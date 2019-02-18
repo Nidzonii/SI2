@@ -1,0 +1,23 @@
+﻿KOMERCIJALISTA
+
+
+Dobavljači
+
+•	Registrovanje novog dobavljača – U tri ponuđena polja, unose se željene vrednosti. Ukoliko već postoji dobavljač sa navedenim imenom, izbacice se odgovarajuća poruka.
+•	Pregled dobavljača – Dat je pregled svih registrovanih dobavljača. Postoji polje za pretragu dobavljača. Pretraga se vrši po izabranoj vrednosti.
+•	Proizvodi dobavljača – Nudi tri mogućnosti. Upis novog proizvoda, izmenu cene proizvoda i brisanje proizvoda. Prilikom upisa novog proizvoda, da bi se uneo bilo kakav proizvod, u polju dobavljač mora se uneti već registrovani, odnosno postojeći dobavljač. Ukoliko već postoji proizvod pod unetim imenom, izbaciće se odgovarajuća poruka. Prilikom izmene cene, pošto je moguće da imamo isti proizvod kod više različitih dobavljača, sa različitom cenom, izmena cene se vrši tako što se uzme srednja vrednost tog proizvoda i pomnoži sa 20%, odnosno 0.2. 
+ 
+
+Naruči proizvod i Naručeni proizvodi od radnika
+
+•	Na početku su izlistani svi proizvodi svih dovavljača. Prilikom narudžbenice, moguće je u korpu dodati samo proizvode istih dobavljača. U suprotnom se prikazuje odgovarajuća poruka. Sva polja sem Kvantitet su Read-only i ona se unose selektujući ceo red iz ponuđene baze podataka. Željeni kvantitet unosi sam korisnik. Moguće je obrisati sadržaj iz korpe kao i pregledati narudžbenicu. Nakon selektovanja svih potrebnih stvari, klikom na dugme Naruči proizvod otvara se forma za slanje mejla. Pri otvaranju forme automatski se upisuje mejl primaoca i sav sadržaj iz korpe. Nakon slanja mejla, proizvodi su uspešno naručeni a sadržaj korpe uspešno obrisan.
+•	Kada radnik naruči proizvod, komercijalista će to videti i ti proizvodi će se pojaviti u tabeli Narudžbine radnika. Selektovanjem celog odgovarajućeg reda, ID proizvoda će se pojaviti u polju pored ID labele nakon čega će se izlistati svi dobavljači koji poseduju takav proizvod. Sve ostalo važi kao kod kartice Naruči proizvod.
+
+
+Naručeni proizvodi
+
+•	U ovom delu aplikacije, moguće je pogledati naručene proizvode koji još uvek nisu obrađeni. Moguće je takve proizvode pronaći, odnosno grupisati po datumu naručivanja (svi proizvodi iz iste narudžbenice imaju isto vreme slanja) ili po ID-u narudžbenice. Nakon unosa ili ID-a narudžbenice ili datuma naručivanja, moguće je izabrati dve opcije – Obriši narudžbenicu i Prijem robe. Brisanjem određene narudžbenice brišu se svi proizvodi u njoj iz naručenih proizvoda. Nakon što pristigne mejl od dobavljača da je naša narudžbenica prihvaćena, primljena roba se smešta u magacin i generiše se odgovarajuća faktura.
+
+
+Prikaz faktura
+•	Pritiskom na dugme Prikaži fakturu iz arhive otvara se dijalog gde se omogućava izbor fakture. Ime faktura jeste vreme naručivanja.

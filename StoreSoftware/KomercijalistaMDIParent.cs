@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,8 +18,6 @@ namespace StoreSoftware
         {
             InitializeComponent();
         }
-
-        
 
         private void KomercijalistaMDIParent_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -69,17 +68,35 @@ namespace StoreSoftware
 
         private void odjaviSeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            login.korisnickoIme = "";
+            this.Hide();
             login log = new login();
             log.Show();
         }
 
         private void KomercijalistaMDIParent_Load(object sender, EventArgs e)
         {
+            this.MinimumSize = this.Size;
             KomercijalistaNaruceniProizvodi knp = new KomercijalistaNaruceniProizvodi();
             knp.MdiParent = this;
             knp.Dock = DockStyle.Fill;
             knp.Show();
+            AutomatizovanaRadnjaB.AutomatizovanaRadnja();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            KomercijalistaNarucenoOdRadnika knor = new KomercijalistaNarucenoOdRadnika();
+            knor.MdiParent = this;
+            knor.Dock = DockStyle.Fill;
+            knor.Show();
+            KomercijalistaNarucenoOdRadnika.PrikazivanjePorukeUkolikoPostojiNeobradjenaNarudzbina();
+        }
+
+        private void pomoćToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Pomoc p = new Pomoc();
+            p.Show();
         }
     }
 }

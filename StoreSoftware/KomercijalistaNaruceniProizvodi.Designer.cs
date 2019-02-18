@@ -42,15 +42,18 @@
             // 
             // dataGridNaruceniProizvodi
             // 
-            this.dataGridNaruceniProizvodi.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridNaruceniProizvodi.AllowUserToAddRows = false;
+            this.dataGridNaruceniProizvodi.AllowUserToDeleteRows = false;
+            this.dataGridNaruceniProizvodi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridNaruceniProizvodi.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridNaruceniProizvodi.BackgroundColor = System.Drawing.Color.White;
             this.dataGridNaruceniProizvodi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridNaruceniProizvodi.Location = new System.Drawing.Point(41, 122);
             this.dataGridNaruceniProizvodi.Name = "dataGridNaruceniProizvodi";
+            this.dataGridNaruceniProizvodi.ReadOnly = true;
             this.dataGridNaruceniProizvodi.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
-            this.dataGridNaruceniProizvodi.Size = new System.Drawing.Size(657, 242);
+            this.dataGridNaruceniProizvodi.Size = new System.Drawing.Size(657, 283);
             this.dataGridNaruceniProizvodi.TabIndex = 0;
             // 
             // label1
@@ -67,10 +70,11 @@
             // 
             this.btnObrisiNarudzbenicu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnObrisiNarudzbenicu.AutoSize = true;
+            this.btnObrisiNarudzbenicu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnObrisiNarudzbenicu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.btnObrisiNarudzbenicu.Location = new System.Drawing.Point(588, 41);
+            this.btnObrisiNarudzbenicu.Location = new System.Drawing.Point(586, 41);
             this.btnObrisiNarudzbenicu.Name = "btnObrisiNarudzbenicu";
-            this.btnObrisiNarudzbenicu.Size = new System.Drawing.Size(110, 23);
+            this.btnObrisiNarudzbenicu.Size = new System.Drawing.Size(112, 25);
             this.btnObrisiNarudzbenicu.TabIndex = 2;
             this.btnObrisiNarudzbenicu.Text = "Obriši narudžbenicu";
             this.btnObrisiNarudzbenicu.UseVisualStyleBackColor = true;
@@ -78,16 +82,21 @@
             // 
             // txtPretragaPoIdu
             // 
+            this.txtPretragaPoIdu.BackColor = System.Drawing.Color.White;
+            this.txtPretragaPoIdu.ForeColor = System.Drawing.Color.Gray;
             this.txtPretragaPoIdu.Location = new System.Drawing.Point(95, 38);
             this.txtPretragaPoIdu.Name = "txtPretragaPoIdu";
-            this.txtPretragaPoIdu.Size = new System.Drawing.Size(109, 20);
+            this.txtPretragaPoIdu.Size = new System.Drawing.Size(137, 20);
             this.txtPretragaPoIdu.TabIndex = 3;
+            this.txtPretragaPoIdu.Text = "Unesite id narudžbenice...";
+            this.txtPretragaPoIdu.Enter += new System.EventHandler(this.txtPretragaPoIdu_Enter);
+            this.txtPretragaPoIdu.Leave += new System.EventHandler(this.txtPretragaPoIdu_Leave);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.label2.Location = new System.Drawing.Point(224, 41);
+            this.label2.Location = new System.Drawing.Point(248, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(13, 13);
             this.label2.TabIndex = 4;
@@ -95,7 +104,8 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(256, 38);
+            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.White;
+            this.dateTimePicker1.Location = new System.Drawing.Point(277, 38);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 5;
@@ -103,10 +113,11 @@
             // btnPretraziPoDatumu
             // 
             this.btnPretraziPoDatumu.AutoSize = true;
+            this.btnPretraziPoDatumu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPretraziPoDatumu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.btnPretraziPoDatumu.Location = new System.Drawing.Point(267, 70);
+            this.btnPretraziPoDatumu.Location = new System.Drawing.Point(277, 70);
             this.btnPretraziPoDatumu.Name = "btnPretraziPoDatumu";
-            this.btnPretraziPoDatumu.Size = new System.Drawing.Size(172, 23);
+            this.btnPretraziPoDatumu.Size = new System.Drawing.Size(200, 25);
             this.btnPretraziPoDatumu.TabIndex = 6;
             this.btnPretraziPoDatumu.Text = "Pretraži po datumu narudžbenice";
             this.btnPretraziPoDatumu.UseVisualStyleBackColor = true;
@@ -115,10 +126,11 @@
             // btnPretraziPoIdu
             // 
             this.btnPretraziPoIdu.AutoSize = true;
+            this.btnPretraziPoIdu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPretraziPoIdu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.btnPretraziPoIdu.Location = new System.Drawing.Point(41, 70);
             this.btnPretraziPoIdu.Name = "btnPretraziPoIdu";
-            this.btnPretraziPoIdu.Size = new System.Drawing.Size(157, 23);
+            this.btnPretraziPoIdu.Size = new System.Drawing.Size(191, 25);
             this.btnPretraziPoIdu.TabIndex = 7;
             this.btnPretraziPoIdu.Text = "Pretraži po ID-u narudžbenice";
             this.btnPretraziPoIdu.UseVisualStyleBackColor = true;
@@ -128,10 +140,11 @@
             // 
             this.btnPrijemRobe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrijemRobe.AutoSize = true;
+            this.btnPrijemRobe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrijemRobe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.btnPrijemRobe.Location = new System.Drawing.Point(588, 70);
+            this.btnPrijemRobe.Location = new System.Drawing.Point(586, 72);
             this.btnPrijemRobe.Name = "btnPrijemRobe";
-            this.btnPrijemRobe.Size = new System.Drawing.Size(110, 23);
+            this.btnPrijemRobe.Size = new System.Drawing.Size(112, 25);
             this.btnPrijemRobe.TabIndex = 8;
             this.btnPrijemRobe.Text = "Prijem robe";
             this.btnPrijemRobe.UseVisualStyleBackColor = true;
@@ -139,10 +152,11 @@
             // 
             // KomercijalistaNaruceniProizvodi
             // 
+            this.AcceptButton = this.btnPrijemRobe;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(748, 376);
+            this.ClientSize = new System.Drawing.Size(748, 417);
             this.Controls.Add(this.btnPrijemRobe);
             this.Controls.Add(this.btnPretraziPoIdu);
             this.Controls.Add(this.btnPretraziPoDatumu);

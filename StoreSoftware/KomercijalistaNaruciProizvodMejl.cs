@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Mail;
+using System.Collections;
 
 namespace StoreSoftware
 {
@@ -35,13 +36,13 @@ namespace StoreSoftware
                 string dobavljac = (string)komandaSelektujDobavljaca.ExecuteScalar();
                 string selektujMejlDobavljaca = "SELECT mejl FROM Dobavljac WHERE ime=@ime";
                 SqlCommand komandaSelektujMejlDobavljaca = new SqlCommand(selektujMejlDobavljaca, konekcija);
-                komandaSelektujMejlDobavljaca.Parameters.AddWithValue("@ime",dobavljac);
+                komandaSelektujMejlDobavljaca.Parameters.AddWithValue("@ime", dobavljac);
                 string dobavljacMejl = (string)komandaSelektujMejlDobavljaca.ExecuteScalar();
                 txtPrimalac.Text = dobavljacMejl;
                 StringBuilder artikli = new StringBuilder();
                 string sveIzKorpe = "SELECT * FROM korpa";
-                SqlCommand selektujSveIzKorpe = new SqlCommand(sveIzKorpe,konekcija);
-                using(SqlDataReader sdr = selektujSveIzKorpe.ExecuteReader())
+                SqlCommand selektujSveIzKorpe = new SqlCommand(sveIzKorpe, konekcija);
+                using (SqlDataReader sdr = selektujSveIzKorpe.ExecuteReader())
                 {
                     while (sdr.Read())
                     {
@@ -56,7 +57,7 @@ namespace StoreSoftware
                 }
                 txtPoruka.Text = artikli.ToString();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
@@ -69,11 +70,11 @@ namespace StoreSoftware
         private void btnPosalji_Click(object sender, EventArgs e)
         {
             login = new NetworkCredential(txtKorisnickoIme.Text, txtSifra.Text);
-            client = new SmtpClient(txtSmtp.Text);
-            client.Port = Convert.ToInt32(txtPort.Text);
-            client.EnableSsl = chkSSL.Checked;
+            client = new SmtpClient("smtp.gmail.com");
+            client.Port = 587;
+            client.EnableSsl = true;
             client.Credentials = login;
-            msg = new MailMessage { From = new MailAddress(txtKorisnickoIme.Text + txtSmtp.Text.Replace("smtp.", "@"), "Komercijalista", Encoding.UTF8) };
+            msg = new MailMessage { From = new MailAddress(txtKorisnickoIme.Text, "Komercijalista", Encoding.UTF8) };
             msg.To.Add(new MailAddress(txtPrimalac.Text));
             msg.Subject = txtNaslov.Text;
             msg.Body = txtPoruka.Text;
@@ -106,14 +107,15 @@ namespace StoreSoftware
 
         private void UnesiUBazuNarudzbenica()
         {
+            int brojac = 0;
             try
             {
-                string ubaciUNarudzbenicu = "INSERT INTO Narudzbenica(datum_narucivanja) OUTPUT INSERTED.id_narudzbenice VALUES(@datum_narucivanja)";
+                string ubaciUNarudzbenicu = "INSERT INTO Narudzbenica(potvrda_narudzbenice,datum_narucivanja) OUTPUT INSERTED.id_narudzbenice VALUES(@potvrda_narudzbenice,@datum_narucivanja)";
                 SqlCommand komandaUbaciUNarudzbenicu = new SqlCommand(ubaciUNarudzbenicu, konekcija);
                 konekcija.Open();
+                komandaUbaciUNarudzbenicu.Parameters.AddWithValue("potvrda_narudzbenice", 0);
                 komandaUbaciUNarudzbenicu.Parameters.AddWithValue("@datum_narucivanja", DateTime.Now.ToString("MM/dd/yyyy HH:mm"));
                 int idNarudzbenice = Convert.ToInt32(komandaUbaciUNarudzbenicu.ExecuteScalar());
-                //MessageBox.Show(idNarudzbenice.ToString());
                 if (idNarudzbenice > 0)
                 {
                     string nadjiProizvod = "SELECT * FROM Korpa";
@@ -127,27 +129,38 @@ namespace StoreSoftware
                     {
                         while (sdr.Read())
                         {
-                            imeProizvoda.Append(sdr["ime_proizvoda"].ToString() + " ");
-                            proizvodjac.Append(sdr["proizvodjac"].ToString() + " ");
-                            kategorija.Append(sdr["kategorija"].ToString() + " ");
-                            kvantitet.Append(sdr["kvantitet"].ToString() + " ");
+                            imeProizvoda.Append(sdr["ime_proizvoda"].ToString() + "~");
+                            proizvodjac.Append(sdr["proizvodjac"].ToString() + "~");
+                            kategorija.Append(sdr["kategorija"].ToString() + "~");
+                            kvantitet.Append(sdr["kvantitet"].ToString() + "~");
+                            brojac++;
                         }
+                    }
+
+                    if(brojac == 1)
+                    {
+                        imeProizvoda.Append("s~");
+                        proizvodjac.Append("s~");
+                        kategorija.Append("s~");
+                        kvantitet.Append("s~");
                     }
 
                     imeProizvoda.Length = imeProizvoda.Length--;
                     proizvodjac.Length = proizvodjac.Length--;
                     kategorija.Length = kategorija.Length--;
                     kvantitet.Length = kvantitet.Length--;
-                    MessageBox.Show(imeProizvoda.ToString());
-                    MessageBox.Show(proizvodjac.ToString());
-                    MessageBox.Show(kategorija.ToString());
-                    MessageBox.Show(kvantitet.ToString());
-                    string[] proizvodi = imeProizvoda.ToString().Split(' ');
-                    string[] proizvodjaci = proizvodjac.ToString().Split(' ');
-                    string[] kategorijaa = kategorija.ToString().Split(' ');
-                    string[] kvantiteti = kvantitet.ToString().Split(' ');
+                    
+                    string[] proizvodi = imeProizvoda.ToString().Split('~');
+                    string[] proizvodjaci = proizvodjac.ToString().Split('~');
+                    string[] kategorijaa = kategorija.ToString().Split('~');
+                    string[] kvantiteti = kvantitet.ToString().Split('~');
+
                     for (int i = 0; i < proizvodi.Length; i++)
                     {
+                        if(brojac == 1 && i == 1) {
+                            break;
+                        }
+
                         string nadjiIdProizvodaDobavljaca = "SELECT id_proizvoda_dobavljaca FROM ProizvodiDobavljaca WHERE ime=@ime AND proizvodjac=@proizvodjac AND kategorija=@kategorija";
                         SqlCommand komandaNadjiIdProizvodaDobavljaca = new SqlCommand(nadjiIdProizvodaDobavljaca, konekcija);
                         komandaNadjiIdProizvodaDobavljaca.Parameters.AddWithValue("@ime", proizvodi[i]);
@@ -160,8 +173,6 @@ namespace StoreSoftware
                         string nadjiIdDobavljaca = "SELECT id_dobavljaca FROM Dobavljac WHERE ime='" + dobavljac + "'";
                         SqlCommand komandaNadjiIdDobavljaca = new SqlCommand(nadjiIdDobavljaca, konekcija);
                         int idDobavljaca = Convert.ToInt32(komandaNadjiIdDobavljaca.ExecuteScalar());
-                        MessageBox.Show(idProizvodaDobavljaca.ToString());
-                        MessageBox.Show(idDobavljaca.ToString());
                         string nadjiCenu = "SELECT cena FROM ImaOdProizvoda WHERE id_dobavljaca=@id_dobavljaca AND id_proizvoda_dobavljaca=@id_proizvoda_dobavljaca";
                         SqlCommand komandaNadjiCenu = new SqlCommand(nadjiCenu, konekcija);
                         komandaNadjiCenu.Parameters.AddWithValue("@id_dobavljaca", idDobavljaca);
@@ -176,17 +187,17 @@ namespace StoreSoftware
                         int proveraUspesnosti = komandaNaruci.ExecuteNonQuery();
                         if (proveraUspesnosti > 0)
                         {
-                            MessageBox.Show("Uspesno narucen proizvod pod imenom: " + proizvodi[i]);
+                            MessageBox.Show("Uspešno naručen proizvod pod imenom: " + proizvodi[i]);
                         }
                         else
                         {
-                            MessageBox.Show("Doslo je do nepredvidjene greske!");
+                            MessageBox.Show("Došlo je do nepredviđene greške!");
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Doslo je do greske");
+                    MessageBox.Show("Došlo je do greške");
                 }
             }
             catch (Exception ex)
@@ -209,14 +220,15 @@ namespace StoreSoftware
                 int proveraUspesnosti = komandaObrisiKorpu.ExecuteNonQuery();
                 if (proveraUspesnosti > 0)
                 {
-                    MessageBox.Show("Uspesno obrisane stavke iz korpe!");
+                    MessageBox.Show("Uspešno obrisane stavke iz korpe!");
                 }
                 else
                 {
-                    MessageBox.Show("Doslo je do greske!");
+                    MessageBox.Show("Došlo je do greške!");
                 }
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }

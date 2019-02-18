@@ -79,27 +79,34 @@ namespace StoreSoftware
             SqlConnection konekcija = KonekcioniString.getKonekcija();
             try
             {
-                string sql = "DELETE FROM Korisnik WHERE korisnicko_ime='" + txtboxKorisnickoIme.Text + "'";
-                SqlCommand komanda = new SqlCommand(sql, konekcija);
-                konekcija.Open();
-                if(comboBox1.Text != "vlasnik")
+                if (login.korisnickoIme == txtboxKorisnickoIme.Text)
                 {
-                    int proveraUspesnosti = komanda.ExecuteNonQuery();
-                    if (proveraUspesnosti > 0)
-                    {
-                        MessageBox.Show("Uspešno obrisan korisnik!");
-                        PrazanTekst();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ne postoji korisnik sa korisnickim imenom " + txtboxKorisnickoIme.Text);
-                    }
+                    MessageBox.Show("Nemoguće je obrisati samog sebe!");
                 }
-                else if(comboBox1.Text == "vlasnik")
+                else
                 {
-                    MessageBox.Show("Nemoguće obrisati vlasnika softvera!");
-                }
+                    string sql = "DELETE FROM Korisnik WHERE korisnicko_ime='" + txtboxKorisnickoIme.Text + "'";
+                    SqlCommand komanda = new SqlCommand(sql, konekcija);
+                    konekcija.Open();
 
+                    if (comboBox1.Text != "vlasnik")
+                    {
+                        int proveraUspesnosti = komanda.ExecuteNonQuery();
+                        if (proveraUspesnosti > 0)
+                        {
+                            MessageBox.Show("Uspešno obrisan korisnik!");
+                            PrazanTekst();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ne postoji korisnik sa korisnickim imenom " + txtboxKorisnickoIme.Text);
+                        }
+                    }
+                    else 
+                    {
+                        MessageBox.Show("Nemoguće obrisati vlasnika softvera!");
+                    }
+                }
             }catch(Exception ex)
             {
                 Console.WriteLine(ex);

@@ -109,11 +109,12 @@ namespace StoreSoftware
 
         private void AdminMDIParent_Load(object sender, EventArgs e)
         {
+            this.MinimumSize = this.Size;
             AdminForma af = new AdminForma();
             af.MdiParent = this;
             af.Dock = DockStyle.Fill;
             af.Show();
-
+            AutomatizovanaRadnjaB.AutomatizovanaRadnja();
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -124,10 +125,7 @@ namespace StoreSoftware
 
         private void dodavanjeNovihProizvodaToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            DodavanjeProizvoda dp = new DodavanjeProizvoda();
-            dp.MdiParent = this;
-            dp.Dock = DockStyle.Fill;
-            dp.Show();
+            
         }
 
         private void izmenaProizvodaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -136,6 +134,94 @@ namespace StoreSoftware
             a.MdiParent = this;
             a.Dock = DockStyle.Fill;
             a.Show();
+        }
+
+        private void naručivanjeProizvodaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KomercijalistaNaruciProizvod knp = new KomercijalistaNaruciProizvod();
+            knp.MdiParent = this;
+            knp.Dock = DockStyle.Fill;
+            knp.Show();
+        }
+
+        private void faktureToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KomercijalistaPrikazFaktura kpf = new KomercijalistaPrikazFaktura();
+            kpf.MdiParent = this;
+            kpf.Dock = DockStyle.Fill;
+            kpf.Show();
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            KomercijalistaNaruceniProizvodi knp = new KomercijalistaNaruceniProizvodi();
+            knp.MdiParent = this;
+            knp.Dock = DockStyle.Fill;
+            knp.Show();
+        }
+
+        private void registrovanjeNovogDobavljačaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KomercijalistaRegistrujNovogDobavljaca krnd = new KomercijalistaRegistrujNovogDobavljaca();
+            krnd.Show();
+        }
+
+        private void pregledDobavljačaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KomercijalistaPregledDobavljaca kpd = new KomercijalistaPregledDobavljaca();
+            kpd.Show();
+        }
+
+        private void proizvodiDobavljačaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KomercijalistaProizvodiDobavljaca kpd = new KomercijalistaProizvodiDobavljaca();
+            kpd.Show();
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            ProdajaForma pf = new ProdajaForma();
+            pf.MdiParent = this;
+            pf.Dock = DockStyle.Fill;
+            pf.Show();
+        }
+
+        private void odjaviSeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            login.korisnickoIme = "";
+            this.Hide();
+            login log = new login();
+            log.Show();
+        }
+
+        private void toolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            AutomatizovanaRadnjaStatistika ars = new AutomatizovanaRadnjaStatistika();
+            ars.MdiParent = this;
+            ars.Dock = DockStyle.Fill;
+            ars.Show();
+        }
+
+        private void dodavanjeNovihProizvodaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DodavanjeProizvoda dp = new DodavanjeProizvoda();
+            dp.MdiParent = this;
+            dp.Dock = DockStyle.Fill;
+            dp.Show();
+        }
+
+        private void izmenaProizvodaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            PromenaAtributa a = new PromenaAtributa();
+            a.MdiParent = this;
+            a.Dock = DockStyle.Fill;
+            a.Show();
+        }
+
+        private void pomoćToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Pomoc p = new Pomoc();
+            p.Show();
         }
     }
 }

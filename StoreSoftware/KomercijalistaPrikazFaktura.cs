@@ -20,7 +20,7 @@ namespace StoreSoftware
         private void btnPrikaziFakturu_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.InitialDirectory = "C:/Users/nikol/source/repos/SI2PROJEKAT/Racuni";
+            ofd.InitialDirectory = "C:/Users/nikol/source/repos/SI2PROJEKAT/Fakture";
             ofd.Filter = "PDF fajlovi (.pdf) | *.pdf";
             if(ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {

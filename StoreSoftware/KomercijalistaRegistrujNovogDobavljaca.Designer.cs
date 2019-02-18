@@ -46,7 +46,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Dobavljac:";
+            this.label1.Text = "Dobavljač:";
             // 
             // label2
             // 
@@ -96,6 +96,7 @@
             // 
             // btnRegistruj
             // 
+            this.btnRegistruj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegistruj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistruj.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.btnRegistruj.Location = new System.Drawing.Point(137, 174);
@@ -108,6 +109,7 @@
             // 
             // KomercijalistaRegistrujNovogDobavljaca
             // 
+            this.AcceptButton = this.btnRegistruj;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
@@ -121,7 +123,9 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(370, 272);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(370, 272);
             this.Name = "KomercijalistaRegistrujNovogDobavljaca";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.KomercijalistaRegistrujNovogDobavljaca_Load);

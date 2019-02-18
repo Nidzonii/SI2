@@ -34,31 +34,41 @@ namespace StoreSoftware
                 komanda1.Parameters.AddWithValue("@mejl", txtMejl.Text);
                 konekcija.Open();
                 int uspesnost1 = (int)komanda1.ExecuteScalar();
-                MessageBox.Show(uspesnost1.ToString());
 
                 if (uspesnost1 > 0)
                 {
-                    MessageBox.Show("Postoji vec dobavljac sa unetim mejlom");
+                    MessageBox.Show("Postoji već dobavljač sa unetim mejlom!");
                 }
                 else
                 {
-                    string upit2 = "INSERT INTO Dobavljac(ime, mejl, broj_telefona) VALUES (@ime, @mejl, @brojTelefona)";
-
-                    SqlCommand komanda2 = new SqlCommand(upit2, konekcija);
-                    komanda2.Parameters.AddWithValue("@ime", txtDobavljac.Text);
-                    komanda2.Parameters.AddWithValue("@mejl", txtMejl.Text);
-                    komanda2.Parameters.AddWithValue("@brojTelefona", txtBrojTelefona.Text);
-                    int uspesnost2 = komanda2.ExecuteNonQuery();
-                    MessageBox.Show(uspesnost2.ToString());
-                    if (uspesnost2 > 0)
+                    string upit3 = "SELECT COUNT(*) FROM Dobavljac WHERE ime=@ime";
+                    SqlCommand komanda3 = new SqlCommand(upit3, konekcija);
+                    komanda3.Parameters.AddWithValue("@ime", txtDobavljac.Text);
+                    int uspesnost3 = (int)komanda3.ExecuteScalar();
+                    if (uspesnost3 > 0)
                     {
-                        MessageBox.Show("Uspesno ste uneli podatke!");
+                        MessageBox.Show("Postoji već dobavljač sa unetim korisničkim imenom!");
                     }
                     else
                     {
-                        MessageBox.Show("Doslo je do nepredvidjene greske");
+                        string upit2 = "INSERT INTO Dobavljac(ime, mejl, broj_telefona) VALUES (@ime, @mejl, @brojTelefona)";
+
+                        SqlCommand komanda2 = new SqlCommand(upit2, konekcija);
+                        komanda2.Parameters.AddWithValue("@ime", txtDobavljac.Text);
+                        komanda2.Parameters.AddWithValue("@mejl", txtMejl.Text);
+                        komanda2.Parameters.AddWithValue("@brojTelefona", txtBrojTelefona.Text);
+                        int uspesnost2 = komanda2.ExecuteNonQuery();
+                        if (uspesnost2 > 0)
+                        {
+                            MessageBox.Show("Uspešno ste uneli podatke!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Doslo je do nepredviđene greške");
+                        }
                     }
                 }
+                ObrisiSvaPolja();
             }
             catch (Exception ex)
             {
@@ -68,6 +78,13 @@ namespace StoreSoftware
             {
                 konekcija.Close();
             }
+        }
+
+        private void ObrisiSvaPolja()
+        {
+            txtDobavljac.Text = "";
+            txtMejl.Text = "";
+            txtBrojTelefona.Text = "";
         }
     }
 }

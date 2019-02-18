@@ -81,7 +81,6 @@
             this.txtboxPassword.Size = new System.Drawing.Size(287, 22);
             this.txtboxPassword.TabIndex = 3;
             this.txtboxPassword.Text = "mrkce";
-            this.txtboxPassword.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // btnLogin
             // 
@@ -153,6 +152,7 @@
             // 
             // login
             // 
+            this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
@@ -175,6 +175,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Računarska oprema";
             this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.login_FormClosing);
             this.Load += new System.EventHandler(this.login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

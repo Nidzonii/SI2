@@ -36,11 +36,11 @@
             // 
             // txtDobavljac
             // 
-            this.txtDobavljac.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDobavljac.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.txtDobavljac.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtDobavljac.Location = new System.Drawing.Point(236, 48);
+            this.txtDobavljac.Location = new System.Drawing.Point(233, 75);
             this.txtDobavljac.Name = "txtDobavljac";
-            this.txtDobavljac.Size = new System.Drawing.Size(191, 26);
+            this.txtDobavljac.Size = new System.Drawing.Size(191, 21);
             this.txtDobavljac.TabIndex = 1;
             this.txtDobavljac.Text = "Unesite ključnu reč...";
             this.txtDobavljac.TextChanged += new System.EventHandler(this.txtDobavljac_TextChanged);
@@ -49,21 +49,25 @@
             // 
             // dataGridDobavljac
             // 
+            this.dataGridDobavljac.AllowUserToAddRows = false;
+            this.dataGridDobavljac.AllowUserToDeleteRows = false;
             this.dataGridDobavljac.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridDobavljac.BackgroundColor = System.Drawing.Color.White;
             this.dataGridDobavljac.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridDobavljac.Location = new System.Drawing.Point(73, 106);
             this.dataGridDobavljac.Name = "dataGridDobavljac";
+            this.dataGridDobavljac.ReadOnly = true;
             this.dataGridDobavljac.Size = new System.Drawing.Size(652, 241);
             this.dataGridDobavljac.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.label1.Location = new System.Drawing.Point(70, 51);
+            this.label1.Location = new System.Drawing.Point(70, 78);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 20);
+            this.label1.Size = new System.Drawing.Size(138, 16);
             this.label1.TabIndex = 3;
             this.label1.Text = "Pretražite dobavljače:";
             // 
@@ -79,7 +83,9 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(816, 489);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "KomercijalistaPregledDobavljaca";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.KomercijalistaPregledDobavljaca_Load);

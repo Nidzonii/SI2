@@ -13,25 +13,11 @@ namespace StoreSoftware
 {
     public partial class login : Form
     {
+        public static string korisnickoIme;
+
         public login()
         {
             InitializeComponent();
-            //txtboxPassword.PasswordChar = '*';
-        }
-
-        private void login_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
@@ -43,53 +29,66 @@ namespace StoreSoftware
         {
             txtboxUsername.Focus();
             SqlConnection conn = KonekcioniString.getKonekcija();
-            txtboxPassword.Text = HesovanjeSifre.enkripcija(txtboxPassword.Text);
-            string sqlQuery = "SELECT korisnicko_ime,sifra FROM Korisnik WHERE korisnicko_ime='" + txtboxUsername.Text + "' AND sifra='" + txtboxPassword.Text + "'";
-            string sqlQueryRole;
-            string role;
-            SqlDataAdapter sda = new SqlDataAdapter(sqlQuery, conn);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-
-            if (dt.Rows.Count == 1)
+            if (String.IsNullOrEmpty(txtboxPassword.Text) || String.IsNullOrEmpty(txtboxUsername.Text))
             {
-                sqlQueryRole = "SELECT ime_uloge FROM Uloga INNER JOIN Korisnik ON Korisnik.id_uloge=Uloga.id_uloge WHERE Korisnik.korisnicko_ime='" + txtboxUsername.Text + "' AND Korisnik.sifra='" + txtboxPassword.Text + "'";
-                SqlCommand com = new SqlCommand(sqlQueryRole, conn);
-                try
-                {
-                    conn.Open();
-                    role = (string)com.ExecuteScalar();
-                    switch (role)
-                    {
-                        case "administrator":
-                            this.Hide();
-                            AdminMDIParent a = new AdminMDIParent();
-                            a.Show();
-                            break;
-                        case "komercijalista":
-                            this.Hide();
-                            KomercijalistaMDIParent k = new KomercijalistaMDIParent();
-                            k.Show();
-                            break;
-                        case "radnik":
-                            this.Hide();
-                            ProdajaForma p = new ProdajaForma();
-                            p.Show();
-                            break;
-                        default:
-                            MessageBox.Show("Za sad samo admin i komercijalista mogu da se uloguju!");
-                            break;
-                    }
-                }
-                finally
-                {
-                    conn.Close();
-                }
+                MessageBox.Show("Moraju se uneti sva polja!");
             }
             else
             {
-                MessageBox.Show("Neispravno uneto korisnicko ime i/ili sifra!");
-                Clean();
+                korisnickoIme = txtboxUsername.Text;
+                string hesovanaSifra = HesovanjeSifre.enkripcija(txtboxPassword.Text);
+                string sqlQuery = "SELECT korisnicko_ime,sifra FROM Korisnik WHERE korisnicko_ime='" + txtboxUsername.Text + "' AND sifra='" + hesovanaSifra + "'";
+                string sqlQueryRole;
+                string role;
+                SqlDataAdapter sda = new SqlDataAdapter(sqlQuery, conn);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+
+                if (dt.Rows.Count == 1)
+                {
+                    sqlQueryRole = "SELECT ime_uloge FROM Uloga INNER JOIN Korisnik ON Korisnik.id_uloge=Uloga.id_uloge WHERE Korisnik.korisnicko_ime='" + txtboxUsername.Text + "' AND Korisnik.sifra='" + hesovanaSifra + "'";
+                    SqlCommand com = new SqlCommand(sqlQueryRole, conn);
+                    try
+                    {
+                        conn.Open();
+                        role = (string)com.ExecuteScalar();
+                        switch (role)
+                        {
+                            case "administrator":
+                                this.Hide();
+                                AdminMDIParent a = new AdminMDIParent();
+                                a.Show();
+                                AutomatizovanaRadnjaB.AutomatizovanaRadnja();
+                                break;
+                            case "komercijalista":
+                                this.Hide();
+                                KomercijalistaMDIParent k = new KomercijalistaMDIParent();
+                                k.Show();
+                                AutomatizovanaRadnjaB.AutomatizovanaRadnja();
+                                break;
+                            case "radnik":
+                                this.Hide();
+                                RadnikMDIParent r = new RadnikMDIParent();
+                                r.Show();
+                                break;
+                            case "vlasnik":
+                                this.Hide();
+                                AdminMDIParent v = new AdminMDIParent();
+                                v.Show();
+                                AutomatizovanaRadnjaB.AutomatizovanaRadnja();
+                                break;
+                        }
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Neispravno uneto korisničko ime i/ili šifra!");
+                    Clean();
+                }
             }
         }
 
@@ -99,5 +98,13 @@ namespace StoreSoftware
             txtboxPassword.Text = "";
         }
 
+        private void login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void login_Load(object sender, EventArgs e)
+        {
+        }
     }
 }

@@ -155,6 +155,7 @@ namespace StoreSoftware
                                     if (proveraUspesnosti1 > 0)
                                     {
                                         MessageBox.Show("Uspesno ubačen proizvod u korpu!");
+                                        ObrisiSvaPolja();
                                     }
                                     else
                                     {
@@ -189,6 +190,7 @@ namespace StoreSoftware
                             if (proveraUspesnosti1 > 0)
                             {
                                 MessageBox.Show("Uspesno ubačen proizvod u korpu!");
+                                ObrisiSvaPolja();
                             }
                             else
                             {
@@ -291,6 +293,21 @@ namespace StoreSoftware
         private void label7_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtImeProizvoda_TextChanged(object sender, EventArgs e)
+        {
+            //txtImeProizvoda.Text = txtImeProizvoda.Text.Replace(" ", "");
+        }
+
+        private void ObrisiSvaPolja()
+        {
+            txtDobavljac.Text = " ";
+            txtImeProizvoda.Text = " ";
+            txtProizvodjac.Text = " ";
+            txtKategorija.Text = " ";
+            txtKvantitet.Text = " ";
+            txtCena.Text = " ";
         }
     }
 }

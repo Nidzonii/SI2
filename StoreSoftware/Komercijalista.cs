@@ -146,7 +146,25 @@ namespace StoreSoftware
         {
             try
             {
-                string upit1 = "SELECT ime AS 'ime proizvoda', proizvodjac, kategorija, cena AS 'Nabavna cena', kvantitet, datum_narucivanja AS 'datum narucivanja', potvrda_narudzbenice AS 'potvrda narudzbenice' FROM ProizvodiDobavljaca INNER JOIN DaLiJeU ON ProizvodiDobavljaca.id_proizvoda_dobavljaca=DaLiJeU.id_proizvoda_dobavljaca INNER JOIN Narudzbenica ON DaLiJeU.id_narudzbenice=Narudzbenica.id_narudzbenice";
+                string upit1 = "SELECT ime AS 'ime proizvoda', proizvodjac AS 'proizvođač', kategorija, cena AS 'nabavna cena', kvantitet, datum_narucivanja AS 'datum naručivanja', potvrda_narudzbenice AS 'potvrda narudžbenice' FROM ProizvodiDobavljaca INNER JOIN DaLiJeU ON ProizvodiDobavljaca.id_proizvoda_dobavljaca=DaLiJeU.id_proizvoda_dobavljaca INNER JOIN Narudzbenica ON DaLiJeU.id_narudzbenice=Narudzbenica.id_narudzbenice WHERE potvrda_narudzbenice='0'";
+                SqlCommand komanda1 = new SqlCommand(upit1, konekcija);
+                SqlDataAdapter sda = new SqlDataAdapter(komanda1);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return null;
+        }
+
+        public static DataTable izlistajSveUNarudzbini()
+        {
+            try
+            {
+                string upit1 = "SELECT * FROM Narudzbine WHERE stanje_narudzbine='neobradjeno'";
                 SqlCommand komanda1 = new SqlCommand(upit1, konekcija);
                 SqlDataAdapter sda = new SqlDataAdapter(komanda1);
                 DataTable dt = new DataTable();
@@ -238,7 +256,7 @@ namespace StoreSoftware
 
             Paragraph prgUkupnaCena = new Paragraph();
             prgUkupnaCena.Alignment = Element.ALIGN_LEFT;
-            prgUkupnaCena.Add(new Chunk("\nRacun: " + racun, fntAuthor));
+            prgUkupnaCena.Add(new Chunk("\n UKUPNI TROSKOVI NA KUPOVINU ROBE: " + racun, fntAuthor));
             document.Add(prgUkupnaCena);
             document.Close();
             writer.Close();
