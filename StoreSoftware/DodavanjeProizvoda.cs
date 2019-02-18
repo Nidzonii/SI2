@@ -40,7 +40,7 @@ namespace StoreSoftware
                     }
                     else
                     {
-                        String dodavanje = "INSERT INTO Proizvodi (ime, opis, cena, nabavna_cena, proizvodjac, kategorija, broj_na_stanju, duzina_garantnog_roka, link) VALUES (@ime, @opis, @cena, @nabavna_cena, @proizvodjac, @kategorija, @broj_na_stanju, @duzina_garantnog_roka, @link)  ";
+                        String dodavanje = "INSERT INTO Proizvodi (ime, opis, cena, nabavna_cena, proizvodjac, kategorija, broj_na_stanju, duzina_garantnog_roka, link, procenti_smanjenja, br_prodatih_proizvoda) VALUES (@ime, @opis, @cena, @nabavna_cena, @proizvodjac, @kategorija, @broj_na_stanju, @duzina_garantnog_roka, @link, @procenti_smanjenja, @br_prodatih_proizvoda)";
                         SqlCommand komanda = new SqlCommand(dodavanje, konekcija);
                         komanda.Parameters.AddWithValue("@ime", textBoxIme.Text);
                         komanda.Parameters.AddWithValue("@opis", textBoxOpis.Text);
@@ -51,6 +51,8 @@ namespace StoreSoftware
                         komanda.Parameters.AddWithValue("@broj_na_stanju", textBoxBrNaStanju.Text);
                         komanda.Parameters.AddWithValue("@duzina_garantnog_roka", textBoxDuzGarRoka.Text);
                         komanda.Parameters.AddWithValue("@link", textBoxLink.Text);
+                        komanda.Parameters.AddWithValue("@procenti_smanjenja", 0);
+                        komanda.Parameters.AddWithValue("br_prodatih_proizvoda", 0);
 
                         int provera = komanda.ExecuteNonQuery();
                         if (provera > 0)

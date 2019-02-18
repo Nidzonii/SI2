@@ -55,7 +55,6 @@ namespace StoreSoftware
         void PadajuciMeniKriterijum()
         {
             comboBox2.Items.Add("ime");
-            comboBox2.Items.Add("barkod");
             comboBox2.Items.Add("opis");
             comboBox2.Items.Add("cena");
             comboBox2.Items.Add("nabavna_cena");
@@ -64,7 +63,6 @@ namespace StoreSoftware
             comboBox2.Items.Add("broj_na_stanju");
             comboBox2.Items.Add("duzina_garantnog_roka");
             comboBox2.Items.Add("link");
-
         }
 
         void PadajuciMeniKriterijumCena()
