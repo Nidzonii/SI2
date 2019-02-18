@@ -38,24 +38,35 @@ namespace StoreSoftware
                             SqlCommand komanda1 = new SqlCommand(sql1, konekcija);
                             konekcija.Open();
                             int pozicijaUloge = (int)komanda1.ExecuteScalar(); //RADI
-                            string sql2 = "INSERT INTO Korisnik(korisnicko_ime, sifra, id_uloge) VALUES (@korisnicko_ime, @sifra, @id_uloge)";
-                            SqlCommand komanda2 = new SqlCommand(sql2, konekcija);
-                            txtboxSifra.Text = HesovanjeSifre.enkripcija(txtboxSifra.Text);
-                            komanda2.Parameters.AddWithValue("@korisnicko_ime", txtboxKorisnickoIme.Text);
-                            komanda2.Parameters.AddWithValue("@sifra", txtboxSifra.Text);
-                            komanda2.Parameters.AddWithValue("@id_uloge", pozicijaUloge);
-                            int proveraUspesnosti = komanda2.ExecuteNonQuery();
-                            if(proveraUspesnosti > 0)
+                            string ispitajPostojanjeKorisnika = "SELECT COUNT(*) FROM Korisnik WHERE korisnicko_ime='" + txtboxKorisnickoIme.Text + "'";
+                            SqlCommand komandaIspitajPostojanjeKorisnika = new SqlCommand(ispitajPostojanjeKorisnika, konekcija);
+                            int proveraUspesnosti1 = Convert.ToInt32(komandaIspitajPostojanjeKorisnika.ExecuteScalar());
+                            if (proveraUspesnosti1 > 0)
                             {
-                                MessageBox.Show("Uspešno registrovan korisnik!");
-                                PrazanTekst();
+                                MessageBox.Show("Postoji zaposleni sa unetim korisničkim imenom!");
+                                break;
                             }
                             else
                             {
-                                MessageBox.Show("Došlo je do neke greške. Pokušajte ponovo.");
-                                PrazanTekst();
+                                string sql2 = "INSERT INTO Korisnik(korisnicko_ime, sifra, id_uloge) VALUES (@korisnicko_ime, @sifra, @id_uloge)";
+                                SqlCommand komanda2 = new SqlCommand(sql2, konekcija);
+                                txtboxSifra.Text = HesovanjeSifre.enkripcija(txtboxSifra.Text);
+                                komanda2.Parameters.AddWithValue("@korisnicko_ime", txtboxKorisnickoIme.Text);
+                                komanda2.Parameters.AddWithValue("@sifra", txtboxSifra.Text);
+                                komanda2.Parameters.AddWithValue("@id_uloge", pozicijaUloge);
+                                int proveraUspesnosti = komanda2.ExecuteNonQuery();
+                                if (proveraUspesnosti > 0)
+                                {
+                                    MessageBox.Show("Uspešno registrovan korisnik!");
+                                    PrazanTekst();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Došlo je do neke greške. Pokušajte ponovo.");
+                                    PrazanTekst();
+                                }
+                                break;
                             }
-                            break;
                         } catch(Exception ex)
                         {
                             Console.WriteLine(ex);
